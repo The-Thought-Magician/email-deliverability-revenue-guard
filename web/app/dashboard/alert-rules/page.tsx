@@ -34,7 +34,7 @@ const METRICS: { value: string; label: string; unit: 'pct' | 'score' | 'num' }[]
   { value: 'hard_bounce_rate', label: 'Hard bounce rate', unit: 'pct' },
   { value: 'engagement_rate', label: 'Engagement rate', unit: 'pct' },
   { value: 'placement_score', label: 'Placement score', unit: 'score' },
-  { value: 'revenue_at_risk', label: 'Revenue at risk', unit: 'num' },
+  { value: 'revenue_at_risk_cents', label: 'Revenue at risk', unit: 'num' },
 ]
 
 const COMPARISONS: { value: string; label: string; symbol: string }[] = [

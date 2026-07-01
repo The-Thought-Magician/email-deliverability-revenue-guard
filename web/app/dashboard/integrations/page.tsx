@@ -28,14 +28,13 @@ type Integration = {
 }
 
 const PROVIDERS: { value: string; label: string; blurb: string }[] = [
-  { value: 'sendgrid', label: 'SendGrid', blurb: 'Pull event webhooks and message activity.' },
-  { value: 'mailgun', label: 'Mailgun', blurb: 'Sync events API and suppression lists.' },
-  { value: 'postmark', label: 'Postmark', blurb: 'Import message streams and bounce data.' },
-  { value: 'amazon_ses', label: 'Amazon SES', blurb: 'Ingest SNS feedback notifications.' },
+  { value: 'mailchimp', label: 'Mailchimp', blurb: 'Pull campaign reports and audience activity.' },
   { value: 'klaviyo', label: 'Klaviyo', blurb: 'Pull campaign and flow engagement events.' },
+  { value: 'sendgrid', label: 'SendGrid', blurb: 'Pull event webhooks and message activity.' },
   { value: 'braze', label: 'Braze', blurb: 'Sync messaging engagement exports.' },
   { value: 'iterable', label: 'Iterable', blurb: 'Import campaign send and engagement events.' },
-  { value: 'custom', label: 'Custom / CSV endpoint', blurb: 'Any HTTP export endpoint returning event rows.' },
+  { value: 'customerio', label: 'Customer.io', blurb: 'Sync broadcast and journey engagement events.' },
+  { value: 'csv', label: 'CSV / JSON export', blurb: 'Any exported file of send and engagement rows.' },
 ]
 
 function providerLabel(p?: string) {

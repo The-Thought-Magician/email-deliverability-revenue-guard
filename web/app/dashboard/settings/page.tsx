@@ -42,7 +42,7 @@ type BillingInfo = {
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const CURRENCIES = ['USD', 'EUR', 'GBP', 'CAD', 'AUD', 'JPY', 'INR']
-const ROLES = ['admin', 'editor', 'viewer']
+const ROLES = ['admin', 'analyst', 'viewer']
 
 function senderName(s?: Sender) {
   if (!s) return ''

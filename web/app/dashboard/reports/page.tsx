@@ -28,11 +28,12 @@ type Report = {
 }
 
 const KINDS: { value: string; label: string; description: string }[] = [
-  { value: 'deliverability', label: 'Deliverability summary', description: 'Placement, complaint and bounce trends across senders.' },
-  { value: 'revenue_at_risk', label: 'Revenue at risk', description: 'Dollar exposure broken down by cause and contributor.' },
+  { value: 'placement_summary', label: 'Placement summary', description: 'Inbox-placement proxy scores across senders.' },
   { value: 'list_health', label: 'List health', description: 'Active vs dormant, role accounts and suppression candidates.' },
-  { value: 'reputation', label: 'Reputation timeline', description: 'Sender reputation history with annotated events.' },
-  { value: 'executive', label: 'Executive scorecard', description: 'One-page board summary of grade, score and risk.' },
+  { value: 'revenue_at_risk', label: 'Revenue at risk', description: 'Dollar exposure broken down by cause and contributor.' },
+  { value: 'suppression', label: 'Suppression', description: 'Recommended suppressions with reasons and impact.' },
+  { value: 'alerts', label: 'Alerts', description: 'Complaint/unsubscribe/bounce spike alert history.' },
+  { value: 'deliverability_overview', label: 'Deliverability overview', description: 'Placement, complaint and bounce trends across senders.' },
 ]
 const SCHEDULES = [
   { value: '', label: 'Manual only' },

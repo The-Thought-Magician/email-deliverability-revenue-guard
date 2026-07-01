@@ -37,7 +37,7 @@ type AuthCheck = {
   createdAt?: string
 }
 
-const STATUS_OPTIONS = ['pass', 'warn', 'fail', 'unknown']
+const STATUS_OPTIONS = ['pass', 'partial', 'fail', 'unknown']
 const DMARC_POLICIES = ['none', 'quarantine', 'reject']
 
 function senderName(s?: Sender) {

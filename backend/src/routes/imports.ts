@@ -440,7 +440,7 @@ router.post('/sample', authMiddleware, zValidator('json', sampleSchema), async (
       .values({
         workspace_id: workspaceId,
         domain: spec.domain,
-        subdomain: spec.domain.split('.')[0],
+        subdomain: null,
         friendly_name: spec.friendly_name,
         status: 'active',
         revenue_per_send_cents: spec.rps,

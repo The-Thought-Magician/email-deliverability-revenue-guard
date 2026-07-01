@@ -234,12 +234,12 @@ router.get('/summary', authMiddleware, async (c) => {
     trendMap.set(day, (trendMap.get(day) ?? 0) + r.at_risk_cents)
   }
   const trend = Array.from(trendMap.entries())
-    .map(([date, atRiskCents]) => ({ date, atRiskCents }))
+    .map(([date, cents]) => ({ date, cents }))
     .sort((a, b) => a.date.localeCompare(b.date))
 
   const byCauseArr = Object.entries(byCause)
-    .map(([cause, atRiskCents]) => ({ cause, atRiskCents }))
-    .sort((a, b) => b.atRiskCents - a.atRiskCents)
+    .map(([cause, cents]) => ({ cause, cents }))
+    .sort((a, b) => b.cents - a.cents)
 
   return c.json({ byCause: byCauseArr, trend, total })
 })
@@ -277,7 +277,7 @@ router.get('/top-contributors', authMiddleware, async (c) => {
     type: 'campaign' | 'segment'
     id: string
     name: string
-    atRiskCents: number
+    cents: number
     causes: Record<string, number>
   }
   const acc = new Map<string, Contrib>()
@@ -291,16 +291,16 @@ router.get('/top-contributors', authMiddleware, async (c) => {
       const key = `${t.type}:${t.id}`
       let e = acc.get(key)
       if (!e) {
-        e = { type: t.type, id: t.id, name: t.name ?? t.id, atRiskCents: 0, causes: {} }
+        e = { type: t.type, id: t.id, name: t.name ?? t.id, cents: 0, causes: {} }
         acc.set(key, e)
       }
-      e.atRiskCents += r.at_risk_cents
+      e.cents += r.at_risk_cents
       e.causes[r.cause] = (e.causes[r.cause] ?? 0) + r.at_risk_cents
     }
   }
 
   const contributors = Array.from(acc.values())
-    .sort((a, b) => b.atRiskCents - a.atRiskCents)
+    .sort((a, b) => b.cents - a.cents)
     .slice(0, limit)
 
   return c.json(contributors)

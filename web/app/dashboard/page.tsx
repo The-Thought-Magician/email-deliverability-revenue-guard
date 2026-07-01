@@ -15,8 +15,8 @@ const WS_KEY = 'edrg.workspaceId'
 interface Workspace { id: string; name: string; currency?: string | null; owner_id?: string }
 interface RiskSummary {
   total?: number
-  byCause?: { cause: string; at_risk_cents?: number; atRiskCents?: number }[]
-  trend?: { period?: string; period_start?: string; at_risk_cents?: number; atRiskCents?: number }[]
+  byCause?: { cause: string; cents?: number; at_risk_cents?: number; atRiskCents?: number }[]
+  trend?: { period?: string; period_start?: string; cents?: number; at_risk_cents?: number; atRiskCents?: number }[]
 }
 interface PlacementScore { id: string; sender_id?: string; score?: number; period_end?: string }
 interface Alert { id: string; severity?: string; status?: string; metric?: string; message?: string; triggered_at?: string }
@@ -168,7 +168,7 @@ export default function DashboardPage() {
   }
 
   // Derived headline values.
-  const totalAtRisk = risk?.total ?? (risk?.byCause ?? []).reduce((s, c) => s + (c.at_risk_cents ?? c.atRiskCents ?? 0), 0)
+  const totalAtRisk = risk?.total ?? (risk?.byCause ?? []).reduce((s, c) => s + (c.cents ?? c.at_risk_cents ?? c.atRiskCents ?? 0), 0)
   const latestPlacement = useMemo(() => {
     if (placement.length === 0) return undefined
     const sorted = [...placement].sort((a, b) => (b.period_end ?? '').localeCompare(a.period_end ?? ''))
@@ -183,7 +183,7 @@ export default function DashboardPage() {
 
   const trendPoints = useMemo(() => {
     const t = risk?.trend ?? []
-    return t.map((p) => (p.at_risk_cents ?? p.atRiskCents ?? 0))
+    return t.map((p) => (p.cents ?? p.at_risk_cents ?? p.atRiskCents ?? 0))
   }, [risk])
 
   const hasData = senders.length > 0 || placement.length > 0 || (risk?.byCause?.length ?? 0) > 0
@@ -302,7 +302,7 @@ export default function DashboardPage() {
                     <p className="text-sm text-slate-500">No at-risk records yet. Compute revenue at risk to populate this.</p>
                   ) : (
                     (risk?.byCause ?? [])
-                      .map((c) => ({ cause: c.cause, cents: c.at_risk_cents ?? c.atRiskCents ?? 0 }))
+                      .map((c) => ({ cause: c.cause, cents: c.cents ?? c.at_risk_cents ?? c.atRiskCents ?? 0 }))
                       .sort((a, b) => b.cents - a.cents)
                       .map((c) => {
                         const pct = totalAtRisk > 0 ? (c.cents / totalAtRisk) * 100 : 0

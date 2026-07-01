@@ -39,11 +39,19 @@ import notificationsRoutes from './routes/notifications.js'
 import activityRoutes from './routes/activity.js'
 import billingRoutes from './routes/billing.js'
 
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled promise rejection:', reason)
+})
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception:', err)
+})
+
 const app = new Hono()
 
 const allowedOrigins = [
   process.env.FRONTEND_URL ?? 'http://localhost:3000',
   'https://email-deliverability-revenue-guard.vercel.app',
+  'https://email-deliverability-revenue-guard-ventures.vercel.app',
 ]
 
 app.use(

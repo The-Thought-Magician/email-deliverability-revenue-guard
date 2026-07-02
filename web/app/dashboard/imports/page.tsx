@@ -197,7 +197,7 @@ export default function ImportsPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-bold tracking-tight text-white">Imports</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-stone-500">
             Upload ESP exports or seed sample data to populate send events, campaigns, and recipients.
           </p>
         </div>
@@ -234,7 +234,7 @@ export default function ImportsPage() {
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold text-slate-200">Import history</span>
+            <span className="text-sm font-semibold text-stone-200">Import history</span>
             <Badge tone="slate">{filtered.length}</Badge>
           </div>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -242,12 +242,12 @@ export default function ImportsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search filename, source..."
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none sm:w-56"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none sm:w-56"
             />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All statuses</option>
               {statuses.map((s) => (
@@ -314,29 +314,29 @@ export default function ImportsPage() {
                     <TR key={job.id}>
                       <TD>
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-slate-200">{job.filename || job.source || 'Untitled import'}</span>
+                          <span className="font-medium text-stone-200">{job.filename || job.source || 'Untitled import'}</span>
                           {job.is_sample && <Badge tone="sky">sample</Badge>}
                         </div>
-                        <div className="text-xs text-slate-500">{job.source || 'manual upload'}</div>
+                        <div className="text-xs text-stone-500">{job.source || 'manual upload'}</div>
                       </TD>
                       <TD>
                         <Badge tone={statusTone(job.status)}>{job.status || 'unknown'}</Badge>
                       </TD>
                       <TD className="text-right tabular-nums">{total.toLocaleString()}</TD>
                       <TD className="text-right">
-                        <div className="tabular-nums text-slate-200">{imported.toLocaleString()}</div>
+                        <div className="tabular-nums text-stone-200">{imported.toLocaleString()}</div>
                         {total > 0 && (
-                          <div className="mt-1 h-1.5 w-24 overflow-hidden rounded-full bg-slate-800">
-                            <div className="h-full rounded-full bg-sky-500" style={{ width: `${pct}%` }} />
+                          <div className="mt-1 h-1.5 w-24 overflow-hidden rounded-full bg-stone-800">
+                            <div className="h-full rounded-full bg-rose-500" style={{ width: `${pct}%` }} />
                           </div>
                         )}
                       </TD>
                       <TD className="text-right tabular-nums">
-                        <span className={job.rows_failed ? 'text-rose-300' : 'text-slate-500'}>
+                        <span className={job.rows_failed ? 'text-rose-300' : 'text-stone-500'}>
                           {(job.rows_failed ?? 0).toLocaleString()}
                         </span>
                       </TD>
-                      <TD className="whitespace-nowrap text-xs text-slate-400">{fmtDate(job.created_at)}</TD>
+                      <TD className="whitespace-nowrap text-xs text-stone-400">{fmtDate(job.created_at)}</TD>
                       <TD className="text-right">
                         <Button variant="ghost" className="text-rose-300 hover:bg-rose-500/10" onClick={() => setDeleting(job)}>
                           Delete
@@ -366,7 +366,7 @@ export default function ImportsPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-stone-300">
           Delete <span className="font-medium text-white">{deleting?.filename || deleting?.source || 'this import'}</span>? All
           send events created by this import will also be removed. This cannot be undone.
         </p>

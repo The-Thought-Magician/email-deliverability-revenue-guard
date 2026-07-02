@@ -178,7 +178,7 @@ export default function NotificationsPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Notifications</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Deliverability alerts, import results, and revenue signals delivered to your inbox.
           </p>
         </div>
@@ -187,7 +187,7 @@ export default function NotificationsPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -226,13 +226,13 @@ export default function NotificationsPage() {
 
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="inline-flex rounded-lg border border-slate-700 bg-slate-900 p-0.5">
+          <div className="inline-flex rounded-lg border border-stone-700 bg-stone-900 p-0.5">
             {(['all', 'unread', 'read'] as Filter[]).map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
                 className={`rounded-md px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
-                  filter === f ? 'bg-sky-500 text-slate-950' : 'text-slate-400 hover:text-white'
+                  filter === f ? 'bg-rose-500 text-stone-950' : 'text-stone-400 hover:text-white'
                 }`}
               >
                 {f}
@@ -244,7 +244,7 @@ export default function NotificationsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search notifications..."
-            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none sm:w-64"
+            className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none sm:w-64"
           />
         </CardHeader>
         <CardBody className="px-0 py-0">
@@ -268,33 +268,33 @@ export default function NotificationsPage() {
               />
             </div>
           ) : (
-            <ul className="divide-y divide-slate-800">
+            <ul className="divide-y divide-stone-800">
               {filtered.map((n) => {
                 const read = isRead(n)
                 return (
                   <li
                     key={n.id}
-                    className={`flex items-start gap-4 px-5 py-4 transition-colors hover:bg-slate-900/50 ${
-                      read ? '' : 'bg-sky-500/[0.04]'
+                    className={`flex items-start gap-4 px-5 py-4 transition-colors hover:bg-stone-900/50 ${
+                      read ? '' : 'bg-rose-500/[0.04]'
                     }`}
                   >
                     <span
-                      className={`mt-1.5 h-2 w-2 flex-shrink-0 rounded-full ${read ? 'bg-slate-700' : 'bg-sky-400'}`}
+                      className={`mt-1.5 h-2 w-2 flex-shrink-0 rounded-full ${read ? 'bg-stone-700' : 'bg-rose-400'}`}
                       aria-hidden
                     />
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
                         {n.kind && <Badge tone={kindTone(n.kind)}>{n.kind}</Badge>}
-                        <span className={`text-sm font-semibold ${read ? 'text-slate-300' : 'text-white'}`}>
+                        <span className={`text-sm font-semibold ${read ? 'text-stone-300' : 'text-white'}`}>
                           {n.title || 'Notification'}
                         </span>
-                        <span className="text-xs text-slate-600">{relTime(n.created_at || n.createdAt)}</span>
+                        <span className="text-xs text-stone-600">{relTime(n.created_at || n.createdAt)}</span>
                       </div>
-                      {n.body && <p className="mt-1 text-sm text-slate-400">{n.body}</p>}
+                      {n.body && <p className="mt-1 text-sm text-stone-400">{n.body}</p>}
                       {n.link && (
                         <a
                           href={n.link}
-                          className="mt-1 inline-block text-xs font-medium text-sky-400 hover:text-sky-300"
+                          className="mt-1 inline-block text-xs font-medium text-rose-400 hover:text-rose-300"
                         >
                           View details →
                         </a>
@@ -304,7 +304,7 @@ export default function NotificationsPage() {
                       <button
                         onClick={() => markRead(n.id)}
                         disabled={busyId === n.id}
-                        className="flex-shrink-0 text-xs font-medium text-slate-500 hover:text-sky-300 disabled:opacity-50"
+                        className="flex-shrink-0 text-xs font-medium text-stone-500 hover:text-rose-300 disabled:opacity-50"
                       >
                         {busyId === n.id ? 'Marking...' : 'Mark read'}
                       </button>

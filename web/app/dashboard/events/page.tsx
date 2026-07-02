@@ -190,7 +190,7 @@ export default function EventsPage() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-white">Event explorer</h1>
-          <p className="mt-1 text-sm text-slate-400">Raw send, open, click, bounce and complaint events across all senders.</p>
+          <p className="mt-1 text-sm text-stone-400">Raw send, open, click, bounce and complaint events across all senders.</p>
         </div>
         <Button variant="secondary" onClick={load}>
           Refresh
@@ -214,7 +214,7 @@ export default function EventsPage() {
             <select
               value={type}
               onChange={(e) => setFilter(() => setType(e.target.value))}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">All types</option>
               {EVENT_TYPES.map((t) => (
@@ -228,7 +228,7 @@ export default function EventsPage() {
             <select
               value={senderId}
               onChange={(e) => setFilter(() => setSenderId(e.target.value))}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">All senders</option>
               {senders.map((s) => (
@@ -243,7 +243,7 @@ export default function EventsPage() {
               type="date"
               value={from}
               onChange={(e) => setFilter(() => setFrom(e.target.value))}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             />
           </Field>
           <Field label="To">
@@ -251,7 +251,7 @@ export default function EventsPage() {
               type="date"
               value={to}
               onChange={(e) => setFilter(() => setTo(e.target.value))}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             />
           </Field>
           {hasFilters && (
@@ -275,7 +275,7 @@ export default function EventsPage() {
       {/* Table */}
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">
+          <h2 className="text-sm font-semibold text-stone-200">
             {total.toLocaleString()} event{total === 1 ? '' : 's'}
           </h2>
           {loading && <Spinner />}
@@ -327,7 +327,7 @@ export default function EventsPage() {
                       </TD>
                       <TD>
                         {rid ? (
-                          <Link href={`/dashboard/recipients?focus=${rid}`} className="text-sky-300 hover:underline">
+                          <Link href={`/dashboard/recipients?focus=${rid}`} className="text-rose-300 hover:underline">
                             {e.recipientEmail ?? e.email ?? rid}
                           </Link>
                         ) : (
@@ -336,7 +336,7 @@ export default function EventsPage() {
                       </TD>
                       <TD>
                         {cid ? (
-                          <Link href={`/dashboard/campaigns/${cid}`} className="text-sky-300 hover:underline">
+                          <Link href={`/dashboard/campaigns/${cid}`} className="text-rose-300 hover:underline">
                             {e.campaignName ?? 'View campaign'}
                           </Link>
                         ) : (
@@ -344,8 +344,8 @@ export default function EventsPage() {
                         )}
                       </TD>
                       <TD>{e.bounceType ?? e.bounce_type ?? '—'}</TD>
-                      <TD className="font-mono text-xs text-slate-500">{e.messageId ?? e.message_id ?? '—'}</TD>
-                      <TD className="whitespace-nowrap text-slate-400">{fmtDate(e.eventAt ?? e.event_at)}</TD>
+                      <TD className="font-mono text-xs text-stone-500">{e.messageId ?? e.message_id ?? '—'}</TD>
+                      <TD className="whitespace-nowrap text-stone-400">{fmtDate(e.eventAt ?? e.event_at)}</TD>
                     </TR>
                   )
                 })}
@@ -357,7 +357,7 @@ export default function EventsPage() {
 
       {/* Pagination */}
       {total > PAGE_SIZE && (
-        <div className="flex items-center justify-between text-sm text-slate-400">
+        <div className="flex items-center justify-between text-sm text-stone-400">
           <span>
             Page {page + 1} of {totalPages}
           </span>
@@ -382,7 +382,7 @@ export default function EventsPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex flex-col gap-1">
-      <span className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="text-xs font-medium uppercase tracking-wide text-stone-500">{label}</span>
       {children}
     </label>
   )

@@ -296,7 +296,7 @@ export default function SunsetPage() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Sunset Planner</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Model the revenue you keep vs. forfeit when you sunset disengaged cohorts, then save a plan.
           </p>
         </div>
@@ -304,7 +304,7 @@ export default function SunsetPage() {
           <select
             value={workspaceId}
             onChange={(e) => setWorkspaceId(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
           >
             {workspaces.map((w) => (
               <option key={w.id} value={w.id}>
@@ -334,25 +334,25 @@ export default function SunsetPage() {
           <div className="lg:col-span-3 space-y-6">
             <Card>
               <CardHeader>
-                <h2 className="text-sm font-semibold text-slate-200">Build a sunset plan</h2>
+                <h2 className="text-sm font-semibold text-stone-200">Build a sunset plan</h2>
               </CardHeader>
               <CardBody className="space-y-5">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <label className="block">
-                    <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Plan name</span>
+                    <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Plan name</span>
                     <input
                       value={planName}
                       onChange={(e) => setPlanName(e.target.value)}
                       placeholder="Q3 disengaged sunset"
-                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+                      className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
                     />
                   </label>
                   <label className="block">
-                    <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Sender scope</span>
+                    <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Sender scope</span>
                     <select
                       value={senderId}
                       onChange={(e) => setSenderId(e.target.value)}
-                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+                      className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
                     >
                       <option value="">All senders</option>
                       {senders.map((s) => (
@@ -365,7 +365,7 @@ export default function SunsetPage() {
                 </div>
 
                 <div>
-                  <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Rollout schedule</span>
+                  <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Rollout schedule</span>
                   <div className="flex flex-wrap gap-2">
                     {SCHEDULES.map((s) => (
                       <button
@@ -377,8 +377,8 @@ export default function SunsetPage() {
                         }}
                         className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
                           schedule === s.value
-                            ? 'border-sky-500/60 bg-sky-500/15 text-sky-200'
-                            : 'border-slate-700 bg-slate-950 text-slate-300 hover:bg-slate-800'
+                            ? 'border-rose-500/60 bg-rose-500/15 text-rose-200'
+                            : 'border-stone-700 bg-stone-950 text-stone-300 hover:bg-stone-800'
                         }`}
                       >
                         {s.label}
@@ -389,7 +389,7 @@ export default function SunsetPage() {
 
                 <div>
                   <div className="mb-2 flex items-center justify-between">
-                    <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                    <span className="text-xs font-medium uppercase tracking-wide text-stone-500">
                       Cohorts to sunset ({selectedCohorts.length} selected)
                     </span>
                     {availableCohorts.length > 0 && (
@@ -401,29 +401,29 @@ export default function SunsetPage() {
                             selectedCohorts.length === availableCohorts.length ? [] : availableCohorts.map((c) => c.id),
                           )
                         }}
-                        className="text-xs text-sky-400 hover:text-sky-300"
+                        className="text-xs text-rose-400 hover:text-rose-300"
                       >
                         {selectedCohorts.length === availableCohorts.length ? 'Clear all' : 'Select all'}
                       </button>
                     )}
                   </div>
                   {availableCohorts.length === 0 ? (
-                    <div className="rounded-lg border border-dashed border-slate-800 bg-slate-950/40 px-4 py-6 text-center text-sm text-slate-500">
+                    <div className="rounded-lg border border-dashed border-stone-800 bg-stone-950/40 px-4 py-6 text-center text-sm text-stone-500">
                       No cohorts for this scope.{' '}
-                      <a href="/dashboard/cohorts" className="text-sky-400 hover:text-sky-300">
+                      <a href="/dashboard/cohorts" className="text-rose-400 hover:text-rose-300">
                         Compute cohorts
                       </a>{' '}
                       first.
                     </div>
                   ) : (
-                    <div className="max-h-64 space-y-1 overflow-y-auto rounded-lg border border-slate-800 bg-slate-950/40 p-2">
+                    <div className="max-h-64 space-y-1 overflow-y-auto rounded-lg border border-stone-800 bg-stone-950/40 p-2">
                       {availableCohorts.map((c) => {
                         const checked = selectedCohorts.includes(c.id)
                         return (
                           <label
                             key={c.id}
                             className={`flex cursor-pointer items-center justify-between rounded-md px-3 py-2 text-sm ${
-                              checked ? 'bg-sky-500/10' : 'hover:bg-slate-900'
+                              checked ? 'bg-rose-500/10' : 'hover:bg-stone-900'
                             }`}
                           >
                             <span className="flex items-center gap-3">
@@ -431,14 +431,14 @@ export default function SunsetPage() {
                                 type="checkbox"
                                 checked={checked}
                                 onChange={() => toggleCohort(c.id)}
-                                className="h-4 w-4 rounded border-slate-600 bg-slate-900 accent-sky-500"
+                                className="h-4 w-4 rounded border-stone-600 bg-stone-900 accent-rose-500"
                               />
-                              <span className="font-medium text-slate-200">{c.name}</span>
-                              <span className="text-xs text-slate-500">{senderName(c.sender_id)}</span>
+                              <span className="font-medium text-stone-200">{c.name}</span>
+                              <span className="text-xs text-stone-500">{senderName(c.sender_id)}</span>
                             </span>
-                            <span className="flex items-center gap-3 text-xs text-slate-400">
+                            <span className="flex items-center gap-3 text-xs text-stone-400">
                               <span>{(c.member_count ?? 0).toLocaleString()} members</span>
-                              <span className="text-slate-500">·</span>
+                              <span className="text-stone-500">·</span>
                               <span>{fmtPct(c.engagement_rate)}</span>
                             </span>
                           </label>
@@ -468,7 +468,7 @@ export default function SunsetPage() {
                     )}
                   </Button>
                   {selectedCohorts.length > 0 && (
-                    <span className="text-xs text-slate-500">
+                    <span className="text-xs text-stone-500">
                       {selectionTotals.members.toLocaleString()} members ·{' '}
                       {fmtMoney(selectionTotals.revenue, currency)} cohort revenue
                     </span>
@@ -481,7 +481,7 @@ export default function SunsetPage() {
             {preview && (
               <Card>
                 <CardHeader>
-                  <h2 className="text-sm font-semibold text-slate-200">Revenue impact preview</h2>
+                  <h2 className="text-sm font-semibold text-stone-200">Revenue impact preview</h2>
                 </CardHeader>
                 <CardBody className="space-y-4">
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -497,18 +497,18 @@ export default function SunsetPage() {
                     const rPct = (retained / total) * 100
                     return (
                       <div>
-                        <div className="flex h-4 overflow-hidden rounded-full bg-slate-800">
+                        <div className="flex h-4 overflow-hidden rounded-full bg-stone-800">
                           <div className="h-full bg-emerald-500" style={{ width: `${rPct}%` }} />
                           <div className="h-full bg-rose-500" style={{ width: `${100 - rPct}%` }} />
                         </div>
-                        <div className="mt-2 flex justify-between text-xs text-slate-400">
+                        <div className="mt-2 flex justify-between text-xs text-stone-400">
                           <span className="text-emerald-300">Retained {rPct.toFixed(0)}%</span>
                           <span className="text-rose-300">Forfeited {(100 - rPct).toFixed(0)}%</span>
                         </div>
                       </div>
                     )
                   })()}
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-stone-500">
                     Based on {selectedCohorts.length} cohort{selectedCohorts.length === 1 ? '' : 's'} with a{' '}
                     {SCHEDULES.find((s) => s.value === schedule)?.label.toLowerCase()} rollout.
                   </p>
@@ -521,7 +521,7 @@ export default function SunsetPage() {
           <div className="lg:col-span-2">
             <Card>
               <CardHeader className="flex items-center justify-between">
-                <h2 className="text-sm font-semibold text-slate-200">Saved plans</h2>
+                <h2 className="text-sm font-semibold text-stone-200">Saved plans</h2>
                 <Badge tone="slate">{plans.length}</Badge>
               </CardHeader>
               <CardBody className="p-0">
@@ -533,18 +533,18 @@ export default function SunsetPage() {
                     />
                   </div>
                 ) : (
-                  <ul className="divide-y divide-slate-800">
+                  <ul className="divide-y divide-stone-800">
                     {plans.map((p) => (
                       <li key={p.id} className="px-5 py-4">
                         <div className="flex items-start justify-between gap-3">
                           <div>
                             <button
                               onClick={() => openDetail(p.id)}
-                              className="text-left text-sm font-medium text-slate-100 hover:text-sky-300"
+                              className="text-left text-sm font-medium text-stone-100 hover:text-rose-300"
                             >
                               {p.name}
                             </button>
-                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-stone-500">
                               <Badge tone={p.status === 'active' ? 'green' : 'slate'}>{p.status ?? 'draft'}</Badge>
                               <span>{senderName(p.sender_id)}</span>
                               <span>·</span>
@@ -554,23 +554,23 @@ export default function SunsetPage() {
                           <button
                             onClick={() => deletePlan(p.id)}
                             disabled={deletingId === p.id}
-                            className="text-xs text-slate-500 hover:text-rose-400 disabled:opacity-50"
+                            className="text-xs text-stone-500 hover:text-rose-400 disabled:opacity-50"
                           >
                             {deletingId === p.id ? '...' : 'Delete'}
                           </button>
                         </div>
                         <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
                           <div>
-                            <div className="text-slate-500">Retained</div>
+                            <div className="text-stone-500">Retained</div>
                             <div className="font-medium text-emerald-300">{fmtMoney(p.revenue_retained_cents, currency)}</div>
                           </div>
                           <div>
-                            <div className="text-slate-500">Forfeited</div>
+                            <div className="text-stone-500">Forfeited</div>
                             <div className="font-medium text-rose-300">{fmtMoney(p.revenue_forfeited_cents, currency)}</div>
                           </div>
                           <div>
-                            <div className="text-slate-500">Risk ↓</div>
-                            <div className="font-medium text-sky-300">{fmtPct(p.complaint_risk_reduction)}</div>
+                            <div className="text-stone-500">Risk ↓</div>
+                            <div className="font-medium text-rose-300">{fmtPct(p.complaint_risk_reduction)}</div>
                           </div>
                         </div>
                       </li>
@@ -593,7 +593,7 @@ export default function SunsetPage() {
           <div className="space-y-4">
             <div>
               <h3 className="text-lg font-semibold text-white">{detail.name}</h3>
-              <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-400">
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-stone-400">
                 <Badge tone={detail.status === 'active' ? 'green' : 'slate'}>{detail.status ?? 'draft'}</Badge>
                 <span>{senderName(detail.sender_id)}</span>
                 <span>·</span>
@@ -606,7 +606,7 @@ export default function SunsetPage() {
               <Stat label="Risk ↓" value={fmtPct(detail.complaint_risk_reduction)} tone="sky" />
             </div>
             <div>
-              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-stone-500">
                 Cohorts ({detail.cohort_ids?.length ?? 0})
               </div>
               {detail.cohort_ids && detail.cohort_ids.length > 0 ? (
@@ -625,7 +625,7 @@ export default function SunsetPage() {
                   </TBody>
                 </Table>
               ) : (
-                <p className="text-sm text-slate-500">No cohorts attached.</p>
+                <p className="text-sm text-stone-500">No cohorts attached.</p>
               )}
             </div>
             <div className="flex justify-end gap-2">

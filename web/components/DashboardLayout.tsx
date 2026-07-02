@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { authClient } from '@/lib/auth/client'
+import CommandPalette, { type CommandRoute } from './CommandPalette'
 
 type NavItem = { label: string; href: string }
 type NavSection = { title: string; items: NavItem[] }
@@ -65,13 +66,20 @@ const sections: NavSection[] = [
       { label: 'Settings', href: '/dashboard/settings' },
     ],
   },
+  {
+    title: 'General',
+    items: [{ label: 'Benchmarks', href: '/benchmarks' }],
+  },
 ]
+
+const routes: CommandRoute[] = sections.flatMap((s) => s.items.map((i) => ({ label: i.label, href: i.href, group: s.title })))
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const router = useRouter()
   const [checking, setChecking] = useState(true)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [paletteOpen, setPaletteOpen] = useState(false)
+  const [railOpen, setRailOpen] = useState(false)
   const [userName, setUserName] = useState<string>('')
 
   useEffect(() => {
@@ -96,9 +104,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (checking) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950">
-        <div className="flex items-center gap-3 text-slate-400">
-          <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-slate-700 border-t-sky-400" />
+      <div className="flex min-h-screen items-center justify-center bg-stone-950">
+        <div className="flex items-center gap-3 text-stone-400">
+          <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-stone-700 border-t-rose-400" />
           <span className="text-sm">Loading workspace...</span>
         </div>
       </div>
@@ -108,90 +116,91 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const isActive = (href: string) =>
     href === '/dashboard' ? pathname === '/dashboard' : pathname === href || pathname.startsWith(href + '/')
 
-  const nav = (
-    <nav className="flex-1 space-y-6 overflow-y-auto px-3 py-5">
-      {sections.map((section) => (
-        <div key={section.title}>
-          <div className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-widest text-slate-600">{section.title}</div>
-          <div className="space-y-0.5">
-            {section.items.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className={`block rounded-lg px-3 py-2 text-sm transition-colors ${
-                  isActive(item.href)
-                    ? 'bg-sky-500/15 font-medium text-sky-300'
-                    : 'text-slate-400 hover:bg-slate-800/70 hover:text-slate-100'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      ))}
-      <div className="border-t border-slate-800 pt-4">
-        <Link
-          href="/benchmarks"
-          onClick={() => setMobileOpen(false)}
-          className="block rounded-lg px-3 py-2 text-sm text-slate-400 hover:bg-slate-800/70 hover:text-slate-100"
-        >
-          Benchmarks
-        </Link>
-      </div>
-    </nav>
-  )
-
   return (
-    <div className="min-h-screen bg-slate-950">
-      {/* Sidebar (desktop) */}
-      <aside className="fixed inset-y-0 left-0 hidden w-64 flex-col border-r border-slate-800 bg-slate-900/60 lg:flex">
-        <div className="flex h-16 items-center border-b border-slate-800 px-5">
+    <div className="min-h-screen bg-stone-950">
+      <CommandPalette routes={routes} open={paletteOpen} onOpenChange={setPaletteOpen} />
+
+      {/* Slim persistent top bar — command-palette-first chrome */}
+      <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-stone-800 bg-stone-950/90 px-4 backdrop-blur sm:px-6">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setRailOpen((v) => !v)}
+            className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-800 hover:text-white lg:hidden"
+            aria-label="Toggle routes"
+          >
+            ☰
+          </button>
           <Link href="/dashboard" className="flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-500 text-sm font-black text-slate-950">E</span>
-            <span className="text-sm font-bold tracking-tight text-white">EmailDeliverabilityRevenueGuard</span>
+            <span className="flex h-6 w-6 items-center justify-center rounded-md bg-rose-500 text-xs font-black text-stone-950">E</span>
+            <span className="hidden text-sm font-bold tracking-tight text-white sm:inline">EmailDeliverabilityRevenueGuard</span>
           </Link>
         </div>
-        {nav}
-      </aside>
 
-      {/* Mobile drawer */}
-      {mobileOpen && (
+        <button
+          onClick={() => setPaletteOpen(true)}
+          className="flex items-center gap-2 rounded-lg border border-stone-800 bg-stone-900/60 px-3 py-1.5 text-sm text-stone-400 transition-colors hover:border-stone-700 hover:text-stone-200"
+        >
+          <span>Jump to...</span>
+          <kbd className="rounded border border-stone-700 px-1.5 py-0.5 font-mono text-[10px] text-stone-500">⌘K</kbd>
+        </button>
+
+        <div className="flex items-center gap-3">
+          <span className="hidden text-sm text-stone-400 sm:inline">{userName}</span>
+          <button
+            onClick={signOut}
+            className="rounded-lg border border-stone-700 px-3 py-1.5 text-sm text-stone-300 transition-colors hover:bg-stone-800 hover:text-white"
+          >
+            Sign out
+          </button>
+        </div>
+      </header>
+
+      {/* Collapsible route rail (mobile / fallback nav; palette is primary) */}
+      {railOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-slate-950/80" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute inset-y-0 left-0 flex w-64 flex-col border-r border-slate-800 bg-slate-900">
-            <div className="flex h-16 items-center justify-between border-b border-slate-800 px-5">
-              <span className="text-sm font-bold text-white">EmailDeliverabilityRevenueGuard</span>
-              <button onClick={() => setMobileOpen(false)} className="text-slate-500 hover:text-white" aria-label="Close menu">✕</button>
-            </div>
-            {nav}
+          <div className="absolute inset-0 bg-stone-950/80" onClick={() => setRailOpen(false)} />
+          <aside className="absolute inset-y-0 left-0 flex w-72 flex-col overflow-y-auto border-r border-stone-800 bg-stone-900 px-3 py-5">
+            {sections.map((section) => (
+              <div key={section.title} className="mb-5">
+                <div className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-widest text-stone-600">{section.title}</div>
+                <div className="space-y-0.5">
+                  {section.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setRailOpen(false)}
+                      className={`block rounded-lg px-3 py-2 text-sm transition-colors ${
+                        isActive(item.href)
+                          ? 'bg-rose-500/15 font-medium text-rose-300'
+                          : 'text-stone-400 hover:bg-stone-800/70 hover:text-stone-100'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
           </aside>
         </div>
       )}
 
-      {/* Main column */}
-      <div className="lg:pl-64">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-800 bg-slate-950/80 px-4 backdrop-blur sm:px-6">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setMobileOpen(true)}
-              className="rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-white lg:hidden"
-              aria-label="Open menu"
-            >
-              ☰
-            </button>
-            <span className="text-sm font-medium text-slate-300">{userName}</span>
-          </div>
-          <button
-            onClick={signOut}
-            className="rounded-lg border border-slate-700 px-3 py-1.5 text-sm text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
+      {/* Desktop route rail — icon-minimal, always visible left strip linking into palette groups */}
+      <div className="hidden border-b border-stone-900 bg-stone-950 px-6 py-2 lg:flex lg:gap-1 lg:overflow-x-auto">
+        {sections.flatMap((s) => s.items).map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`whitespace-nowrap rounded-md px-2.5 py-1 text-xs transition-colors ${
+              isActive(item.href) ? 'bg-rose-500/15 text-rose-300' : 'text-stone-500 hover:bg-stone-900 hover:text-stone-200'
+            }`}
           >
-            Sign out
-          </button>
-        </header>
-        <main className="px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+            {item.label}
+          </Link>
+        ))}
       </div>
+
+      <main className="px-4 py-6 sm:px-6 lg:px-8">{children}</main>
     </div>
   )
 }

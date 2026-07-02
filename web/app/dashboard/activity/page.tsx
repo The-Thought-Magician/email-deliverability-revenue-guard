@@ -170,7 +170,7 @@ export default function ActivityPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Activity Log</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             A chronological audit trail of every change made across this workspace.
           </p>
         </div>
@@ -179,7 +179,7 @@ export default function ActivityPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -218,7 +218,7 @@ export default function ActivityPage() {
             <select
               value={actionFilter}
               onChange={(e) => setActionFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All actions</option>
               {actionOptions.map((a) => (
@@ -230,7 +230,7 @@ export default function ActivityPage() {
             <select
               value={entityFilter}
               onChange={(e) => setEntityFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All entities</option>
               {entityOptions.map((t) => (
@@ -245,7 +245,7 @@ export default function ActivityPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search action, entity, actor..."
-            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none lg:w-72"
+            className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none lg:w-72"
           />
         </CardHeader>
         <CardBody className="px-0 py-0">
@@ -282,24 +282,24 @@ export default function ActivityPage() {
               <TBody>
                 {filtered.map((e) => (
                   <TR key={e.id}>
-                    <TD className="whitespace-nowrap text-slate-400">{fmtDateTime(e.created_at || e.createdAt)}</TD>
+                    <TD className="whitespace-nowrap text-stone-400">{fmtDateTime(e.created_at || e.createdAt)}</TD>
                     <TD>
                       <Badge tone={actionTone(e.action)}>{e.action || '—'}</Badge>
                     </TD>
                     <TD>
                       {entityType(e) ? (
-                        <span className="text-slate-300">
+                        <span className="text-stone-300">
                           {entityType(e)}
                           {entityId(e) && (
-                            <span className="ml-1 font-mono text-xs text-slate-600">{entityId(e).slice(0, 8)}</span>
+                            <span className="ml-1 font-mono text-xs text-stone-600">{entityId(e).slice(0, 8)}</span>
                           )}
                         </span>
                       ) : (
-                        <span className="text-slate-600">—</span>
+                        <span className="text-stone-600">—</span>
                       )}
                     </TD>
-                    <TD className="font-mono text-xs text-slate-500">{actorId(e) ? actorId(e).slice(0, 12) : '—'}</TD>
-                    <TD className="max-w-md text-xs text-slate-500">
+                    <TD className="font-mono text-xs text-stone-500">{actorId(e) ? actorId(e).slice(0, 12) : '—'}</TD>
+                    <TD className="max-w-md text-xs text-stone-500">
                       <span className="block max-w-md truncate" title={detailSummary(e.detail)}>{detailSummary(e.detail) || '—'}</span>
                     </TD>
                   </TR>
@@ -309,7 +309,7 @@ export default function ActivityPage() {
           )}
         </CardBody>
         {!loading && workspaceId && total > PAGE_SIZE && (
-          <div className="flex items-center justify-between border-t border-slate-800 px-5 py-3 text-sm text-slate-400">
+          <div className="flex items-center justify-between border-t border-stone-800 px-5 py-3 text-sm text-stone-400">
             <span>
               Page {page + 1} of {totalPages} · {total.toLocaleString()} events
             </span>

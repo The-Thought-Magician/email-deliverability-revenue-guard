@@ -191,7 +191,7 @@ export default function RevenueAtRiskPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Revenue at Risk</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-stone-500">
             Dollars exposed by deliverability degradation, broken down by root cause.
           </p>
         </div>
@@ -200,7 +200,7 @@ export default function RevenueAtRiskPage() {
             <select
               value={workspaceId}
               onChange={(e) => onSelectWorkspace(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -267,16 +267,16 @@ export default function RevenueAtRiskPage() {
                       return (
                         <div key={c.cause}>
                           <div className="mb-1 flex items-center justify-between text-sm">
-                            <span className="flex items-center gap-2 text-slate-300">
+                            <span className="flex items-center gap-2 text-stone-300">
                               <span
                                 className="inline-block h-2.5 w-2.5 rounded-sm"
                                 style={{ backgroundColor: CAUSE_TONES[i % CAUSE_TONES.length] }}
                               />
                               {causeLabel(c.cause)}
                             </span>
-                            <span className="font-medium text-slate-200">{fmtMoney(c.cents, currency)}</span>
+                            <span className="font-medium text-stone-200">{fmtMoney(c.cents, currency)}</span>
                           </div>
-                          <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                          <div className="h-2 w-full overflow-hidden rounded-full bg-stone-800">
                             <div
                               className="h-full rounded-full"
                               style={{
@@ -285,7 +285,7 @@ export default function RevenueAtRiskPage() {
                               }}
                             />
                           </div>
-                          <div className="mt-0.5 text-right text-[11px] text-slate-500">{pct.toFixed(1)}% of total</div>
+                          <div className="mt-0.5 text-right text-[11px] text-stone-500">{pct.toFixed(1)}% of total</div>
                         </div>
                       )
                     })}
@@ -311,7 +311,7 @@ export default function RevenueAtRiskPage() {
                           <div key={`${label}-${i}`} className="group flex flex-1 flex-col items-center justify-end">
                             <div className="relative w-full">
                               <div
-                                className="w-full rounded-t bg-sky-500/70 transition-colors group-hover:bg-sky-400"
+                                className="w-full rounded-t bg-rose-500/70 transition-colors group-hover:bg-rose-400"
                                 style={{ height: `${Math.max(4, (h / 100) * 160)}px` }}
                                 title={`${label}: ${fmtMoney(t.cents, currency)}`}
                               />
@@ -320,7 +320,7 @@ export default function RevenueAtRiskPage() {
                         )
                       })}
                     </div>
-                    <div className="mt-2 flex justify-between text-[10px] text-slate-600">
+                    <div className="mt-2 flex justify-between text-[10px] text-stone-600">
                       <span>{trend[0]?.label ?? trend[0]?.period ?? trend[0]?.date ?? 'start'}</span>
                       <span>{fmtMoney(maxTrend, currency)} peak</span>
                       <span>
@@ -353,16 +353,16 @@ export default function RevenueAtRiskPage() {
                     return (
                       <div
                         key={`${name}-${i}`}
-                        className="rounded-lg border border-slate-800 bg-slate-900/40 px-4 py-3"
+                        className="rounded-lg border border-stone-800 bg-stone-900/40 px-4 py-3"
                       >
                         <div className="flex items-center justify-between gap-2">
-                          <span className="truncate text-sm font-medium text-slate-200" title={name}>
+                          <span className="truncate text-sm font-medium text-stone-200" title={name}>
                             {name}
                           </span>
                           {kind && <Badge tone="slate">{kind}</Badge>}
                         </div>
                         <div className="mt-1 text-lg font-semibold text-rose-300">{fmtMoney(cents, currency)}</div>
-                        {c.cause && <div className="mt-0.5 text-xs text-slate-500">{causeLabel(c.cause)}</div>}
+                        {c.cause && <div className="mt-0.5 text-xs text-stone-500">{causeLabel(c.cause)}</div>}
                       </div>
                     )
                   })}
@@ -380,7 +380,7 @@ export default function RevenueAtRiskPage() {
                   <select
                     value={causeFilter}
                     onChange={(e) => setCauseFilter(e.target.value)}
-                    className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                    className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                   >
                     <option value="all">All causes</option>
                     {causes.map((c) => (
@@ -393,7 +393,7 @@ export default function RevenueAtRiskPage() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search records..."
-                    className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500 focus:outline-none"
+                    className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -428,13 +428,13 @@ export default function RevenueAtRiskPage() {
                         <TD>
                           <Badge tone="rose">{causeLabel(r.cause)}</Badge>
                         </TD>
-                        <TD className="whitespace-nowrap text-xs text-slate-400">
+                        <TD className="whitespace-nowrap text-xs text-stone-400">
                           {r.period_start ? new Date(r.period_start).toLocaleDateString() : '—'}
                           {r.period_end ? ` → ${new Date(r.period_end).toLocaleDateString()}` : ''}
                         </TD>
-                        <TD className="font-mono text-xs text-slate-400">{r.sender_id ? r.sender_id.slice(0, 8) : '—'}</TD>
-                        <TD className="font-mono text-xs text-slate-400">{r.segment_id ? r.segment_id.slice(0, 8) : '—'}</TD>
-                        <TD className="font-mono text-xs text-slate-400">{r.campaign_id ? r.campaign_id.slice(0, 8) : '—'}</TD>
+                        <TD className="font-mono text-xs text-stone-400">{r.sender_id ? r.sender_id.slice(0, 8) : '—'}</TD>
+                        <TD className="font-mono text-xs text-stone-400">{r.segment_id ? r.segment_id.slice(0, 8) : '—'}</TD>
+                        <TD className="font-mono text-xs text-stone-400">{r.campaign_id ? r.campaign_id.slice(0, 8) : '—'}</TD>
                         <TD className="text-right font-medium text-rose-300">{fmtMoney(r.at_risk_cents, currency)}</TD>
                       </TR>
                     ))}

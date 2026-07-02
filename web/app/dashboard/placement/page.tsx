@@ -177,7 +177,7 @@ export default function PlacementPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Inbox Placement</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Engagement, complaint, and bounce signals rolled into a single placement score per sender.
           </p>
         </div>
@@ -186,7 +186,7 @@ export default function PlacementPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -197,7 +197,7 @@ export default function PlacementPage() {
             value={selectedSender}
             onChange={(e) => onSenderChange(e.target.value)}
             disabled={senders.length === 0}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none disabled:opacity-50"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none disabled:opacity-50"
           >
             {senders.length === 0 && <option value="">No senders</option>}
             {senders.map((s) => (
@@ -261,7 +261,7 @@ export default function PlacementPage() {
             <CardHeader className="flex items-center justify-between">
               <div>
                 <h2 className="text-base font-semibold text-white">Score trend</h2>
-                <p className="text-xs text-slate-500">Placement score over recent periods for {senderName(senderById.get(selectedSender))}</p>
+                <p className="text-xs text-stone-500">Placement score over recent periods for {senderName(senderById.get(selectedSender))}</p>
               </div>
               <Badge tone={scoreTone(latest?.score) === 'slate' ? 'slate' : scoreTone(latest?.score)}>
                 {trend.length} points
@@ -332,7 +332,7 @@ function TrendChart({ points }: { points: TrendPoint[] }) {
     .filter((d) => typeof d.value === 'number')
 
   if (data.length === 0) {
-    return <div className="py-10 text-center text-sm text-slate-500">No trend data yet. Compute a score to build the timeline.</div>
+    return <div className="py-10 text-center text-sm text-stone-500">No trend data yet. Compute a score to build the timeline.</div>
   }
 
   const W = 720

@@ -262,7 +262,7 @@ export default function AlertRulesPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Alert Rules</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-stone-500">
             Define thresholds the scanner evaluates against sender and segment metrics.
           </p>
         </div>
@@ -271,7 +271,7 @@ export default function AlertRulesPage() {
             <select
               value={workspaceId}
               onChange={(e) => onSelectWorkspace(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -339,9 +339,9 @@ export default function AlertRulesPage() {
                   <TBody>
                     {rules.map((r) => (
                       <TR key={r.id}>
-                        <TD className="font-medium text-slate-200">{metricMeta(r.metric).label}</TD>
+                        <TD className="font-medium text-stone-200">{metricMeta(r.metric).label}</TD>
                         <TD>
-                          <span className="font-mono text-slate-300">
+                          <span className="font-mono text-stone-300">
                             {comparisonSymbol(r.comparison)} {fmtThreshold(r.metric, r.threshold)}
                           </span>
                         </TD>
@@ -405,12 +405,12 @@ export default function AlertRulesPage() {
           )}
 
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Metric</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Metric</label>
             <select
               value={form.metric}
               onChange={(e) => setForm({ ...form, metric: e.target.value })}
               disabled={!!editing}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none disabled:opacity-60"
+              className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none disabled:opacity-60"
             >
               {METRICS.map((m) => (
                 <option key={m.value} value={m.value}>
@@ -418,16 +418,16 @@ export default function AlertRulesPage() {
                 </option>
               ))}
             </select>
-            {editing && <p className="mt-1 text-xs text-slate-600">Metric and scope are fixed after creation.</p>}
+            {editing && <p className="mt-1 text-xs text-stone-600">Metric and scope are fixed after creation.</p>}
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Comparison</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Comparison</label>
               <select
                 value={form.comparison}
                 onChange={(e) => setForm({ ...form, comparison: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               >
                 {COMPARISONS.map((c) => (
                   <option key={c.value} value={c.value}>
@@ -437,7 +437,7 @@ export default function AlertRulesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">
                 Threshold {metricMeta(form.metric).unit === 'pct' ? '(%)' : ''}
               </label>
               <input
@@ -445,7 +445,7 @@ export default function AlertRulesPage() {
                 step="any"
                 value={form.threshold}
                 onChange={(e) => setForm({ ...form, threshold: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               />
             </div>
           </div>
@@ -453,13 +453,13 @@ export default function AlertRulesPage() {
           {!editing && (
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">
                   Sender (optional)
                 </label>
                 <select
                   value={form.senderId}
                   onChange={(e) => setForm({ ...form, senderId: e.target.value })}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                  className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                 >
                   <option value="">All senders</option>
                   {senders.map((s) => (
@@ -470,13 +470,13 @@ export default function AlertRulesPage() {
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">
                   Segment (optional)
                 </label>
                 <select
                   value={form.segmentId}
                   onChange={(e) => setForm({ ...form, segmentId: e.target.value })}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                  className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                 >
                   <option value="">All segments</option>
                   {segments.map((s) => (
@@ -489,21 +489,21 @@ export default function AlertRulesPage() {
             </div>
           )}
 
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-stone-300">
             <input
               type="checkbox"
               checked={form.enabled}
               onChange={(e) => setForm({ ...form, enabled: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-900 text-sky-500 focus:ring-sky-500"
+              className="h-4 w-4 rounded border-stone-600 bg-stone-900 text-rose-500 focus:ring-rose-500"
             />
             Rule enabled
           </label>
 
-          <div className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-xs text-slate-400">
+          <div className="rounded-lg border border-stone-800 bg-stone-900/60 px-3 py-2 text-xs text-stone-400">
             Triggers when{' '}
-            <span className="font-medium text-slate-200">{metricMeta(form.metric).label}</span>{' '}
-            <span className="font-mono text-slate-200">{comparisonSymbol(form.comparison)}</span>{' '}
-            <span className="font-medium text-slate-200">
+            <span className="font-medium text-stone-200">{metricMeta(form.metric).label}</span>{' '}
+            <span className="font-mono text-stone-200">{comparisonSymbol(form.comparison)}</span>{' '}
+            <span className="font-medium text-stone-200">
               {fmtThreshold(form.metric, Number(form.threshold) || 0)}
             </span>
             .
@@ -527,9 +527,9 @@ export default function AlertRulesPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-stone-400">
           This will permanently delete the{' '}
-          <span className="font-medium text-slate-200">
+          <span className="font-medium text-stone-200">
             {confirmDelete ? metricMeta(confirmDelete.metric).label : ''}
           </span>{' '}
           rule. Alerts already triggered by it are retained.

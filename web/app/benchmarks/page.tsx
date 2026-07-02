@@ -82,26 +82,26 @@ export default function BenchmarksPage() {
   }, [benchmarks, query, activeCategory])
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      <nav className="flex items-center justify-between border-b border-slate-800 px-6 py-4">
+    <main className="min-h-screen bg-stone-950 text-stone-100">
+      <nav className="flex items-center justify-between border-b border-stone-800 px-6 py-4">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-500 text-sm font-black text-slate-950">E</span>
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-rose-500 text-sm font-black text-stone-950">E</span>
           <span className="text-base font-bold tracking-tight text-white">EmailDeliverabilityRevenueGuard</span>
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="/pricing" className="text-sm text-slate-300 hover:text-white">Pricing</Link>
-          <Link href="/auth/sign-in" className="text-sm text-slate-300 hover:text-white">Sign In</Link>
-          <Link href="/auth/sign-up" className="rounded-lg bg-sky-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-sky-400">Get Started</Link>
+          <Link href="/pricing" className="text-sm text-stone-300 hover:text-white">Pricing</Link>
+          <Link href="/auth/sign-in" className="text-sm text-stone-300 hover:text-white">Sign In</Link>
+          <Link href="/auth/sign-up" className="rounded-lg bg-rose-500 px-4 py-2 text-sm font-semibold text-stone-950 hover:bg-rose-400">Get Started</Link>
         </div>
       </nav>
 
       <section className="mx-auto max-w-5xl px-6 py-12">
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-sky-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-sky-400" /> Public reference
+          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-rose-400">
+            <span className="h-1.5 w-1.5 rounded-full bg-rose-400" /> Public reference
           </div>
           <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">Deliverability benchmarks</h1>
-          <p className="max-w-2xl text-slate-400">
+          <p className="max-w-2xl text-stone-400">
             Industry reference values for complaint rates, bounce thresholds, engagement, and inbox placement. Use these to calibrate
             your own sender health against Gmail and Yahoo bulk-sender expectations.
           </p>
@@ -115,8 +115,8 @@ export default function BenchmarksPage() {
                 onClick={() => setActiveCategory(c)}
                 className={`rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors ${
                   activeCategory === c
-                    ? 'border-sky-500/50 bg-sky-500/15 text-sky-300'
-                    : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200'
+                    ? 'border-rose-500/50 bg-rose-500/15 text-rose-300'
+                    : 'border-stone-800 bg-stone-900/60 text-stone-400 hover:text-stone-200'
                 }`}
               >
                 {c === 'all' ? 'All categories' : c}
@@ -127,7 +127,7 @@ export default function BenchmarksPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search benchmarks..."
-            className="w-full rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30 sm:w-64"
+            className="w-full rounded-lg border border-stone-800 bg-stone-900/60 px-3 py-2 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30 sm:w-64"
           />
         </div>
 
@@ -158,14 +158,14 @@ export default function BenchmarksPage() {
                 {filtered.map((b) => (
                   <TR key={b.id ?? b.key}>
                     <TD>
-                      <div className="font-medium text-slate-100">{b.label}</div>
-                      <div className="font-mono text-xs text-slate-600">{b.key}</div>
+                      <div className="font-medium text-stone-100">{b.label}</div>
+                      <div className="font-mono text-xs text-stone-600">{b.key}</div>
                     </TD>
                     <TD>
                       <Badge tone={categoryTone(b.category)}>{b.category}</Badge>
                     </TD>
-                    <TD className="text-right font-mono text-sky-300">{formatValue(b.value, b.unit)}</TD>
-                    <TD className="text-slate-500">{b.source || '—'}</TD>
+                    <TD className="text-right font-mono text-rose-300">{formatValue(b.value, b.unit)}</TD>
+                    <TD className="text-stone-500">{b.source || '—'}</TD>
                   </TR>
                 ))}
               </TBody>
@@ -173,8 +173,8 @@ export default function BenchmarksPage() {
           )}
         </div>
 
-        <p className="mt-8 text-sm text-slate-500">
-          Ready to measure your own senders against these? <Link href="/auth/sign-up" className="text-sky-400 hover:text-sky-300">Create a free workspace</Link>.
+        <p className="mt-8 text-sm text-stone-500">
+          Ready to measure your own senders against these? <Link href="/auth/sign-up" className="text-rose-400 hover:text-rose-300">Create a free workspace</Link>.
         </p>
       </section>
     </main>

@@ -265,7 +265,7 @@ export default function RevenueModelPage() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Revenue Model</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Set the per-send value used to quantify revenue at risk. Derive it from history or enter it directly.
           </p>
         </div>
@@ -274,7 +274,7 @@ export default function RevenueModelPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -286,7 +286,7 @@ export default function RevenueModelPage() {
           <select
             value={senderId}
             onChange={(e) => setSenderId(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
           >
             <option value="">Workspace default</option>
             {senders.map((s) => (
@@ -331,16 +331,16 @@ export default function RevenueModelPage() {
             <div className="lg:col-span-2">
               <Card>
                 <CardHeader className="flex items-center justify-between">
-                  <h2 className="text-sm font-semibold text-slate-200">New version</h2>
+                  <h2 className="text-sm font-semibold text-stone-200">New version</h2>
                   <Badge tone="slate">{senderName(senderId)}</Badge>
                 </CardHeader>
                 <CardBody className="space-y-4">
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-stone-500">
                     Saving creates a new version and deactivates the prior one. Either enter revenue per send
                     directly, or provide conversion &amp; AOV to derive it.
                   </p>
                   <label className="block">
-                    <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                    <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">
                       Revenue per send ({currency})
                     </span>
                     <input
@@ -350,12 +350,12 @@ export default function RevenueModelPage() {
                       step="0.0001"
                       min="0"
                       placeholder="0.12"
-                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+                      className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
                     />
                   </label>
                   <div className="grid grid-cols-2 gap-3">
                     <label className="block">
-                      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">
                         Conversion %
                       </span>
                       <input
@@ -365,11 +365,11 @@ export default function RevenueModelPage() {
                         step="0.01"
                         min="0"
                         placeholder="0.30"
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+                        className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
                       />
                     </label>
                     <label className="block">
-                      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">
                         AOV ({currency})
                       </span>
                       <input
@@ -379,18 +379,18 @@ export default function RevenueModelPage() {
                         step="0.01"
                         min="0"
                         placeholder="40.00"
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+                        className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
                       />
                     </label>
                   </div>
                   {computedRps != null && (
-                    <div className="rounded-lg border border-sky-500/20 bg-sky-500/5 px-3 py-2 text-xs text-sky-200">
+                    <div className="rounded-lg border border-rose-500/20 bg-rose-500/5 px-3 py-2 text-xs text-rose-200">
                       Conversion × AOV implies{' '}
                       <span className="font-semibold">{fmtMoney(computedRps, currency, 4)}</span> per send.{' '}
                       <button
                         type="button"
                         onClick={() => setRps((computedRps / 100).toString())}
-                        className="underline hover:text-sky-100"
+                        className="underline hover:text-rose-100"
                       >
                         Use this value
                       </button>
@@ -424,7 +424,7 @@ export default function RevenueModelPage() {
             <div className="lg:col-span-3">
               <Card>
                 <CardHeader className="flex items-center justify-between">
-                  <h2 className="text-sm font-semibold text-slate-200">Version history</h2>
+                  <h2 className="text-sm font-semibold text-stone-200">Version history</h2>
                   <Badge tone="slate">{versions.length}</Badge>
                 </CardHeader>
                 <CardBody className="p-0">
@@ -455,20 +455,20 @@ export default function RevenueModelPage() {
                             <TR key={v.id}>
                               <TD>
                                 <span className="inline-flex items-center gap-2">
-                                  <span className="font-medium text-slate-100">v{v.version ?? '?'}</span>
+                                  <span className="font-medium text-stone-100">v{v.version ?? '?'}</span>
                                   {v.is_active && <Badge tone="green">active</Badge>}
                                 </span>
                               </TD>
-                              <TD className="text-right font-medium text-slate-100">
+                              <TD className="text-right font-medium text-stone-100">
                                 {fmtMoney(v.revenue_per_send_cents, currency, 4)}
                               </TD>
                               <TD className="text-right">{fmtPct(v.conversion_rate)}</TD>
                               <TD className="text-right">{fmtMoney(v.aov_cents, currency)}</TD>
                               <TD>
-                                <span className="text-slate-400">{v.source ?? '—'}</span>
+                                <span className="text-stone-400">{v.source ?? '—'}</span>
                               </TD>
                               <TD>
-                                <span className="text-slate-500">{fmtDate(v.created_at)}</span>
+                                <span className="text-stone-500">{fmtDate(v.created_at)}</span>
                               </TD>
                             </TR>
                           ))}

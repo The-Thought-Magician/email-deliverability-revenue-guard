@@ -230,7 +230,7 @@ export default function ScorecardsPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Deliverability Scorecards</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             A single board-ready grade per sender combining placement, list health, complaints, and revenue at risk.
           </p>
         </div>
@@ -239,7 +239,7 @@ export default function ScorecardsPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -250,7 +250,7 @@ export default function ScorecardsPage() {
             value={selectedSender}
             onChange={(e) => setSelectedSender(e.target.value)}
             disabled={senders.length === 0}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none disabled:opacity-50"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none disabled:opacity-50"
           >
             {senders.length === 0 && <option value="">No senders</option>}
             {senders.map((s) => (
@@ -322,7 +322,7 @@ export default function ScorecardsPage() {
           <Card>
             <CardHeader>
               <h2 className="text-base font-semibold text-white">Scorecard history</h2>
-              <p className="text-xs text-slate-500">View a full scorecard or export it as a JSON bundle.</p>
+              <p className="text-xs text-stone-500">View a full scorecard or export it as a JSON bundle.</p>
             </CardHeader>
             <CardBody className="px-0 py-0">
               <Table>
@@ -341,8 +341,8 @@ export default function ScorecardsPage() {
                 <TBody>
                   {sorted.map((sc) => (
                     <TR key={sc.id}>
-                      <TD className="text-slate-400">{fmtDate(sc.generated_at || sc.generatedAt || sc.created_at || sc.createdAt)}</TD>
-                      <TD className="text-slate-200">{senderName(senderById.get(sc.sender_id || sc.senderId || ''))}</TD>
+                      <TD className="text-stone-400">{fmtDate(sc.generated_at || sc.generatedAt || sc.created_at || sc.createdAt)}</TD>
+                      <TD className="text-stone-200">{senderName(senderById.get(sc.sender_id || sc.senderId || ''))}</TD>
                       <TD className="text-center">
                         <Badge tone={gradeTone(sc.grade)}>{sc.grade || '—'}</Badge>
                       </TD>
@@ -390,16 +390,16 @@ export default function ScorecardsPage() {
             <div className="flex items-center gap-4">
               <div className={`flex h-16 w-16 items-center justify-center rounded-xl border text-2xl font-bold ${
                 gradeTone(detail.grade) === 'green' ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
-                : gradeTone(detail.grade) === 'sky' ? 'border-sky-500/30 bg-sky-500/10 text-sky-300'
+                : gradeTone(detail.grade) === 'sky' ? 'border-rose-500/30 bg-rose-500/10 text-rose-300'
                 : gradeTone(detail.grade) === 'amber' ? 'border-amber-500/30 bg-amber-500/10 text-amber-300'
                 : gradeTone(detail.grade) === 'rose' ? 'border-rose-500/30 bg-rose-500/10 text-rose-300'
-                : 'border-slate-700 bg-slate-800 text-slate-300'
+                : 'border-stone-700 bg-stone-800 text-stone-300'
               }`}>
                 {detail.grade || '—'}
               </div>
               <div>
-                <div className="text-sm font-medium text-slate-200">{senderName(senderById.get(detail.sender_id || detail.senderId || ''))}</div>
-                <div className="text-xs text-slate-500">Generated {fmtDate(detail.generated_at || detail.generatedAt || detail.created_at || detail.createdAt)}</div>
+                <div className="text-sm font-medium text-stone-200">{senderName(senderById.get(detail.sender_id || detail.senderId || ''))}</div>
+                <div className="text-xs text-stone-500">Generated {fmtDate(detail.generated_at || detail.generatedAt || detail.created_at || detail.createdAt)}</div>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -409,15 +409,15 @@ export default function ScorecardsPage() {
               <Stat label="Rev. at risk" value={money(num(detail.revenue_at_risk_cents, detail.revenueAtRiskCents))} tone="rose" />
             </div>
             <div>
-              <h3 className="mb-2 text-sm font-semibold text-slate-200">Top actions</h3>
+              <h3 className="mb-2 text-sm font-semibold text-stone-200">Top actions</h3>
               {detailActions.length === 0 ? (
-                <p className="text-sm text-slate-500">No recommended actions in this scorecard.</p>
+                <p className="text-sm text-stone-500">No recommended actions in this scorecard.</p>
               ) : (
                 <ul className="space-y-2">
                   {detailActions.map((a, i) => (
-                    <li key={i} className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2">
-                      <div className="text-sm font-medium text-slate-200">{actionTitle(a)}</div>
-                      {actionDetail(a) && <div className="mt-0.5 text-xs text-slate-500">{actionDetail(a)}</div>}
+                    <li key={i} className="rounded-lg border border-stone-800 bg-stone-900/60 px-3 py-2">
+                      <div className="text-sm font-medium text-stone-200">{actionTitle(a)}</div>
+                      {actionDetail(a) && <div className="mt-0.5 text-xs text-stone-500">{actionDetail(a)}</div>}
                     </li>
                   ))}
                 </ul>
@@ -440,7 +440,7 @@ export default function ScorecardsPage() {
           </>
         }
       >
-        <pre className="max-h-[50vh] overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-300">
+        <pre className="max-h-[50vh] overflow-auto rounded-lg border border-stone-800 bg-stone-950 p-3 text-xs text-stone-300">
           {exportJson || '{}'}
         </pre>
       </Modal>

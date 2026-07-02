@@ -216,7 +216,7 @@ export default function DashboardPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white">Deliverability overview</h1>
-          <p className="mt-1 text-sm text-slate-500">Revenue exposure and sender health across {activeWorkspace?.name ?? 'your workspace'}.</p>
+          <p className="mt-1 text-sm text-stone-500">Revenue exposure and sender health across {activeWorkspace?.name ?? 'your workspace'}.</p>
         </div>
         <div className="flex items-center gap-2">
           <label className="sr-only" htmlFor="ws-switch">Workspace</label>
@@ -224,7 +224,7 @@ export default function DashboardPage() {
             id="ws-switch"
             value={activeId ?? ''}
             onChange={(e) => setActiveId(e.target.value)}
-            className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30"
+            className="rounded-lg border border-stone-800 bg-stone-900/60 px-3 py-2 text-sm text-stone-200 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30"
           >
             {workspaces.map((w) => (
               <option key={w.id} value={w.id}>{w.name}</option>
@@ -251,11 +251,11 @@ export default function DashboardPage() {
                   <Button onClick={runSeed} disabled={seeding}>
                     {seeding ? <span className="flex items-center gap-2"><Spinner className="h-4 w-4" /> Seeding...</span> : 'Seed sample data'}
                   </Button>
-                  <Link href="/dashboard/imports/new" className="text-sm text-sky-400 hover:text-sky-300">or import your own CSV / JSON</Link>
+                  <Link href="/dashboard/imports/new" className="text-sm text-rose-400 hover:text-rose-300">or import your own CSV / JSON</Link>
                 </div>
               }
             />
-            {seedMsg && <p className="mt-4 text-center text-sm text-slate-400">{seedMsg}</p>}
+            {seedMsg && <p className="mt-4 text-center text-sm text-stone-400">{seedMsg}</p>}
           </CardBody>
         </Card>
       ) : (
@@ -293,13 +293,13 @@ export default function DashboardPage() {
             <Card className="lg:col-span-2">
               <CardHeader className="flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-white">Revenue at risk</h2>
-                <Link href="/dashboard/revenue-at-risk" className="text-xs text-sky-400 hover:text-sky-300">Full breakdown →</Link>
+                <Link href="/dashboard/revenue-at-risk" className="text-xs text-rose-400 hover:text-rose-300">Full breakdown →</Link>
               </CardHeader>
               <CardBody className="space-y-5">
                 <TrendChart points={trendPoints} />
                 <div className="space-y-2">
                   {(risk?.byCause ?? []).length === 0 ? (
-                    <p className="text-sm text-slate-500">No at-risk records yet. Compute revenue at risk to populate this.</p>
+                    <p className="text-sm text-stone-500">No at-risk records yet. Compute revenue at risk to populate this.</p>
                   ) : (
                     (risk?.byCause ?? [])
                       .map((c) => ({ cause: c.cause, cents: c.cents ?? c.at_risk_cents ?? c.atRiskCents ?? 0 }))
@@ -309,10 +309,10 @@ export default function DashboardPage() {
                         return (
                           <div key={c.cause}>
                             <div className="flex items-center justify-between text-sm">
-                              <span className="capitalize text-slate-300">{c.cause.replace(/_/g, ' ')}</span>
-                              <span className="font-mono text-slate-400">{centsToDollars(c.cents)}</span>
+                              <span className="capitalize text-stone-300">{c.cause.replace(/_/g, ' ')}</span>
+                              <span className="font-mono text-stone-400">{centsToDollars(c.cents)}</span>
                             </div>
-                            <div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-800">
+                            <div className="mt-1 h-2 overflow-hidden rounded-full bg-stone-800">
                               <div className="h-full rounded-full bg-rose-500/70" style={{ width: `${Math.max(2, pct)}%` }} />
                             </div>
                           </div>
@@ -327,20 +327,20 @@ export default function DashboardPage() {
             <Card>
               <CardHeader className="flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-white">Open alerts</h2>
-                <Link href="/dashboard/alerts" className="text-xs text-sky-400 hover:text-sky-300">View all →</Link>
+                <Link href="/dashboard/alerts" className="text-xs text-rose-400 hover:text-rose-300">View all →</Link>
               </CardHeader>
               <CardBody>
                 {alerts.length === 0 ? (
-                  <p className="text-sm text-slate-500">No open alerts. Sender health is within thresholds.</p>
+                  <p className="text-sm text-stone-500">No open alerts. Sender health is within thresholds.</p>
                 ) : (
                   <ul className="space-y-3">
                     {alerts.slice(0, 6).map((a) => (
                       <li key={a.id} className="flex items-start gap-3">
                         <Badge tone={severityTone(a.severity)}>{a.severity ?? 'info'}</Badge>
                         <div className="min-w-0">
-                          <div className="truncate text-sm text-slate-200">{a.message ?? a.metric ?? 'Alert'}</div>
+                          <div className="truncate text-sm text-stone-200">{a.message ?? a.metric ?? 'Alert'}</div>
                           {a.triggered_at && (
-                            <div className="text-xs text-slate-600">{new Date(a.triggered_at).toLocaleString()}</div>
+                            <div className="text-xs text-stone-600">{new Date(a.triggered_at).toLocaleString()}</div>
                           )}
                         </div>
                       </li>
@@ -355,11 +355,11 @@ export default function DashboardPage() {
           <Card>
             <CardHeader className="flex items-center justify-between">
               <h2 className="text-sm font-semibold text-white">Placement by sender</h2>
-              <Link href="/dashboard/placement" className="text-xs text-sky-400 hover:text-sky-300">Placement detail →</Link>
+              <Link href="/dashboard/placement" className="text-xs text-rose-400 hover:text-rose-300">Placement detail →</Link>
             </CardHeader>
             <CardBody>
               {placement.length === 0 ? (
-                <p className="text-sm text-slate-500">No placement scores computed yet.</p>
+                <p className="text-sm text-stone-500">No placement scores computed yet.</p>
               ) : (
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {placement.slice(0, 6).map((p) => {
@@ -367,14 +367,14 @@ export default function DashboardPage() {
                       ?? senders.find((s) => s.id === p.sender_id)?.domain
                       ?? 'Sender'
                     const tone = scoreTone(p.score)
-                    const barColor = tone === 'green' ? 'bg-emerald-500' : tone === 'sky' ? 'bg-sky-500' : tone === 'amber' ? 'bg-amber-500' : 'bg-rose-500'
+                    const barColor = tone === 'green' ? 'bg-emerald-500' : tone === 'sky' ? 'bg-rose-500' : tone === 'amber' ? 'bg-amber-500' : 'bg-rose-500'
                     return (
-                      <div key={p.id} className="rounded-lg border border-slate-800 bg-slate-900/40 p-4">
+                      <div key={p.id} className="rounded-lg border border-stone-800 bg-stone-900/40 p-4">
                         <div className="flex items-center justify-between">
-                          <span className="truncate text-sm text-slate-300">{senderName}</span>
-                          <span className="font-mono text-sm text-slate-200">{Math.round(p.score ?? 0)}</span>
+                          <span className="truncate text-sm text-stone-300">{senderName}</span>
+                          <span className="font-mono text-sm text-stone-200">{Math.round(p.score ?? 0)}</span>
                         </div>
-                        <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-800">
+                        <div className="mt-2 h-2 overflow-hidden rounded-full bg-stone-800">
                           <div className={`h-full rounded-full ${barColor}`} style={{ width: `${Math.min(100, Math.max(2, p.score ?? 0))}%` }} />
                         </div>
                       </div>
@@ -386,16 +386,16 @@ export default function DashboardPage() {
           </Card>
 
           {/* Re-seed CTA available even with data */}
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/40 px-5 py-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-stone-800 bg-stone-900/40 px-5 py-4">
             <div>
-              <div className="text-sm font-medium text-slate-200">Need fresh sample data?</div>
-              <div className="text-xs text-slate-500">Re-seed this workspace with senders, campaigns, and 90 days of events.</div>
+              <div className="text-sm font-medium text-stone-200">Need fresh sample data?</div>
+              <div className="text-xs text-stone-500">Re-seed this workspace with senders, campaigns, and 90 days of events.</div>
             </div>
             <Button variant="secondary" onClick={runSeed} disabled={seeding}>
               {seeding ? <span className="flex items-center gap-2"><Spinner className="h-4 w-4" /> Seeding...</span> : 'Seed sample data'}
             </Button>
           </div>
-          {seedMsg && <p className="text-sm text-slate-400">{seedMsg}</p>}
+          {seedMsg && <p className="text-sm text-stone-400">{seedMsg}</p>}
         </>
       )}
 
@@ -414,7 +414,7 @@ export default function DashboardPage() {
 function TrendChart({ points }: { points: number[] }) {
   if (points.length < 2) {
     return (
-      <div className="flex h-24 items-center justify-center rounded-lg border border-dashed border-slate-800 text-xs text-slate-600">
+      <div className="flex h-24 items-center justify-center rounded-lg border border-dashed border-stone-800 text-xs text-stone-600">
         Not enough trend data to chart
       </div>
     )
@@ -472,16 +472,16 @@ function CreateWorkspaceModal({
         </>
       }
     >
-      <label className="block text-sm font-medium text-slate-300">Workspace name</label>
+      <label className="block text-sm font-medium text-stone-300">Workspace name</label>
       <input
         autoFocus
         value={name}
         onChange={(e) => setName(e.target.value)}
         onKeyDown={(e) => { if (e.key === 'Enter' && name.trim()) onCreate() }}
         placeholder="Acme Marketing"
-        className="mt-2 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30"
+        className="mt-2 w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30"
       />
-      <p className="mt-2 text-xs text-slate-500">You will be added as the owner. You can rename it later in Settings.</p>
+      <p className="mt-2 text-xs text-stone-500">You will be added as the owner. You can rename it later in Settings.</p>
     </Modal>
   )
 }

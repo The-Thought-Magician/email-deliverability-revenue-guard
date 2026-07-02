@@ -253,7 +253,7 @@ export default function SuppressionPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Suppression Recommendations</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Risky addresses flagged for suppression, with the revenue trade-off of keeping them on the list.
           </p>
         </div>
@@ -262,7 +262,7 @@ export default function SuppressionPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -282,7 +282,7 @@ export default function SuppressionPage() {
         <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">{error}</div>
       )}
       {notice && (
-        <div className="rounded-lg border border-sky-500/30 bg-sky-500/10 px-4 py-3 text-sm text-sky-300">{notice}</div>
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">{notice}</div>
       )}
 
       {loading ? (
@@ -306,7 +306,7 @@ export default function SuppressionPage() {
                     key={f}
                     onClick={() => setFilter(f)}
                     className={`rounded-lg px-3 py-1.5 text-xs font-medium capitalize transition-colors ${
-                      filter === f ? 'bg-sky-500 text-slate-950' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      filter === f ? 'bg-rose-500 text-stone-950' : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
                     }`}
                   >
                     {f} <span className="opacity-70">({counts[f]})</span>
@@ -316,7 +316,7 @@ export default function SuppressionPage() {
               <div className="flex items-center gap-2">
                 {selected.size > 0 && (
                   <>
-                    <span className="text-xs text-slate-400">{selected.size} selected</span>
+                    <span className="text-xs text-stone-400">{selected.size} selected</span>
                     <Button variant="secondary" className="px-3 py-1.5 text-xs" onClick={() => bulkSet('accepted')}>Accept</Button>
                     <Button variant="ghost" className="px-3 py-1.5 text-xs" onClick={() => bulkSet('dismissed')}>Dismiss</Button>
                   </>
@@ -326,7 +326,7 @@ export default function SuppressionPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search email or reason"
-                  className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none"
+                  className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-1.5 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
                 />
               </div>
             </CardHeader>
@@ -352,7 +352,7 @@ export default function SuppressionPage() {
                   <THead>
                     <TR>
                       <TH className="w-10">
-                        <input type="checkbox" checked={allVisibleSelected} onChange={toggleAll} className="accent-sky-500" aria-label="Select all" />
+                        <input type="checkbox" checked={allVisibleSelected} onChange={toggleAll} className="accent-rose-500" aria-label="Select all" />
                       </TH>
                       <TH>Email</TH>
                       <TH>Reason</TH>
@@ -369,18 +369,18 @@ export default function SuppressionPage() {
                       return (
                         <TR key={r.id}>
                           <TD>
-                            <input type="checkbox" checked={selected.has(r.id)} onChange={() => toggleOne(r.id)} className="accent-sky-500" aria-label={`Select ${email(r)}`} />
+                            <input type="checkbox" checked={selected.has(r.id)} onChange={() => toggleOne(r.id)} className="accent-rose-500" aria-label={`Select ${email(r)}`} />
                           </TD>
-                          <TD className="font-mono text-xs text-slate-200">{email(r)}</TD>
+                          <TD className="font-mono text-xs text-stone-200">{email(r)}</TD>
                           <TD>
                             <div className="flex flex-col gap-1">
                               {reasonCode(r) && <Badge tone={reasonTone(reasonCode(r))}>{reasonCode(r)}</Badge>}
-                              {r.reason && <span className="text-xs text-slate-500">{r.reason}</span>}
+                              {r.reason && <span className="text-xs text-stone-500">{r.reason}</span>}
                             </div>
                           </TD>
-                          <TD className="text-right text-slate-200">{money(revenueCents(r))}</TD>
+                          <TD className="text-right text-stone-200">{money(revenueCents(r))}</TD>
                           <TD><Badge tone={statusTone(st)}>{st}</Badge></TD>
-                          <TD className="text-slate-500">{fmtDate(r.created_at || r.createdAt)}</TD>
+                          <TD className="text-stone-500">{fmtDate(r.created_at || r.createdAt)}</TD>
                           <TD>
                             <div className="flex justify-end gap-2">
                               {st !== 'accepted' && (

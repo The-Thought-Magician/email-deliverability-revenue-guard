@@ -217,14 +217,14 @@ export default function CampaignDetailPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-2">
-        <Link href="/dashboard/campaigns" className="text-sm text-slate-500 hover:text-sky-300">
+        <Link href="/dashboard/campaigns" className="text-sm text-stone-500 hover:text-rose-300">
           ← Campaigns
         </Link>
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-white">{c.name ?? 'Campaign'}</h1>
-            {c.subject && <p className="mt-1 text-sm text-slate-400">Subject: {c.subject}</p>}
-            <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+            {c.subject && <p className="mt-1 text-sm text-stone-400">Subject: {c.subject}</p>}
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-stone-500">
               {c.senderName && <Badge tone="slate">{c.senderName}</Badge>}
               {c.segmentName && <Badge tone="sky">{c.segmentName}</Badge>}
               <span>Sent {fmtDate(sentAt)}</span>
@@ -262,7 +262,7 @@ export default function CampaignDetailPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Engagement breakdown</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Engagement breakdown</h2>
           </CardHeader>
           <CardBody className="space-y-4">
             <RateBar label="Delivery rate" value={deliveryRate} tone="emerald" />
@@ -275,7 +275,7 @@ export default function CampaignDetailPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Deltas vs. baseline</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Deltas vs. baseline</h2>
           </CardHeader>
           <CardBody>
             {c.deltas && Object.keys(c.deltas).length > 0 ? (
@@ -285,7 +285,7 @@ export default function CampaignDetailPage() {
                   const positive = n >= 0
                   return (
                     <div key={k} className="flex items-center justify-between text-sm">
-                      <span className="capitalize text-slate-400">{k.replace(/([A-Z])/g, ' $1')}</span>
+                      <span className="capitalize text-stone-400">{k.replace(/([A-Z])/g, ' $1')}</span>
                       <span className={positive ? 'text-emerald-300' : 'text-rose-300'}>
                         {positive ? '▲' : '▼'} {pct(Math.abs(n))}
                       </span>
@@ -294,7 +294,7 @@ export default function CampaignDetailPage() {
                 })}
               </div>
             ) : (
-              <p className="text-sm text-slate-500">No baseline comparison available for this campaign.</p>
+              <p className="text-sm text-stone-500">No baseline comparison available for this campaign.</p>
             )}
           </CardBody>
         </Card>
@@ -303,18 +303,18 @@ export default function CampaignDetailPage() {
       {/* Event list */}
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">Events ({filtered.length})</h2>
+          <h2 className="text-sm font-semibold text-stone-200">Events ({filtered.length})</h2>
           <div className="flex flex-wrap items-center gap-2">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search email / message id"
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500 focus:outline-none"
+              className="w-56 rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500 focus:outline-none"
             />
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All event types</option>
               {eventTypes.map((t) => (
@@ -360,7 +360,7 @@ export default function CampaignDetailPage() {
                         {e.recipientId ?? e.recipient_id ? (
                           <Link
                             href={`/dashboard/recipients?focus=${e.recipientId ?? e.recipient_id}`}
-                            className="text-sky-300 hover:underline"
+                            className="text-rose-300 hover:underline"
                           >
                             {e.recipientEmail ?? e.email ?? (e.recipientId ?? e.recipient_id)}
                           </Link>
@@ -369,8 +369,8 @@ export default function CampaignDetailPage() {
                         )}
                       </TD>
                       <TD>{e.bounceType ?? e.bounce_type ?? '—'}</TD>
-                      <TD className="font-mono text-xs text-slate-500">{e.messageId ?? e.message_id ?? '—'}</TD>
-                      <TD className="whitespace-nowrap text-slate-400">{fmtDate(e.eventAt ?? e.event_at)}</TD>
+                      <TD className="font-mono text-xs text-stone-500">{e.messageId ?? e.message_id ?? '—'}</TD>
+                      <TD className="whitespace-nowrap text-stone-400">{fmtDate(e.eventAt ?? e.event_at)}</TD>
                     </TR>
                   )
                 })}
@@ -388,17 +388,17 @@ function RateBar({ label, value, tone }: { label: string; value: number | undefi
   const width = n === undefined ? 0 : Math.min(100, Math.max(0, n))
   const bar: Record<string, string> = {
     emerald: 'bg-emerald-400',
-    sky: 'bg-sky-400',
+    sky: 'bg-rose-400',
     amber: 'bg-amber-400',
     rose: 'bg-rose-400',
   }
   return (
     <div>
       <div className="mb-1 flex items-center justify-between text-xs">
-        <span className="text-slate-400">{label}</span>
-        <span className="font-medium text-slate-200">{n === undefined ? '—' : `${n.toFixed(2)}%`}</span>
+        <span className="text-stone-400">{label}</span>
+        <span className="font-medium text-stone-200">{n === undefined ? '—' : `${n.toFixed(2)}%`}</span>
       </div>
-      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-stone-800">
         <div className={`h-full rounded-full ${bar[tone]}`} style={{ width: `${width}%` }} />
       </div>
     </div>

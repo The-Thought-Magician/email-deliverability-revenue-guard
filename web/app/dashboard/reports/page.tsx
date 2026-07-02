@@ -201,7 +201,7 @@ export default function ReportsPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Reports</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Saved report definitions — render on demand or on a schedule, then export the JSON bundle for sharing.
           </p>
         </div>
@@ -210,7 +210,7 @@ export default function ReportsPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -250,12 +250,12 @@ export default function ReportsPage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search reports..."
-                  className="w-44 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none"
+                  className="w-44 rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
                 />
                 <select
                   value={kindFilter}
                   onChange={(e) => setKindFilter(e.target.value)}
-                  className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                  className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                 >
                   <option value="">All kinds</option>
                   {KINDS.filter((k) => kindsPresent.includes(k.value)).map((k) => (
@@ -274,7 +274,7 @@ export default function ReportsPage() {
                   />
                 </div>
               ) : filtered.length === 0 ? (
-                <div className="px-5 py-10 text-center text-sm text-slate-500">No reports match your filters.</div>
+                <div className="px-5 py-10 text-center text-sm text-stone-500">No reports match your filters.</div>
               ) : (
                 <Table>
                   <THead>
@@ -292,13 +292,13 @@ export default function ReportsPage() {
                       return (
                         <TR key={r.id}>
                           <TD>
-                            <button onClick={() => setViewReport(r)} className="font-medium text-slate-100 hover:text-sky-300">
+                            <button onClick={() => setViewReport(r)} className="font-medium text-stone-100 hover:text-rose-300">
                               {r.name}
                             </button>
                           </TD>
                           <TD><Badge tone="sky">{kindLabel(r.kind)}</Badge></TD>
-                          <TD>{r.schedule ? <Badge tone="amber">{r.schedule}</Badge> : <span className="text-slate-600">Manual</span>}</TD>
-                          <TD>{rendered ? <span className="text-slate-300">{fmtDateTime(rendered)}</span> : <span className="text-slate-600">Never</span>}</TD>
+                          <TD>{r.schedule ? <Badge tone="amber">{r.schedule}</Badge> : <span className="text-stone-600">Manual</span>}</TD>
+                          <TD>{rendered ? <span className="text-stone-300">{fmtDateTime(rendered)}</span> : <span className="text-stone-600">Never</span>}</TD>
                           <TD className="text-right">
                             <div className="flex justify-end gap-2">
                               <Button variant="secondary" className="px-3 py-1.5 text-xs" onClick={() => render(r)} disabled={renderingId === r.id}>
@@ -344,34 +344,34 @@ export default function ReportsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Name</label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Q3 deliverability review"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
               autoFocus
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Kind</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Kind</label>
             <select
               value={form.kind}
               onChange={(e) => setForm({ ...form, kind: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {KINDS.map((k) => (
                 <option key={k.value} value={k.value}>{k.label}</option>
               ))}
             </select>
-            <p className="mt-1.5 text-xs text-slate-500">{KINDS.find((k) => k.value === form.kind)?.description}</p>
+            <p className="mt-1.5 text-xs text-stone-500">{KINDS.find((k) => k.value === form.kind)?.description}</p>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Schedule</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Schedule</label>
             <select
               value={form.schedule}
               onChange={(e) => setForm({ ...form, schedule: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {SCHEDULES.map((s) => (
                 <option key={s.value} value={s.value}>{s.label}</option>
@@ -407,13 +407,13 @@ export default function ReportsPage() {
               </Badge>
             </div>
             <div>
-              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">Output</div>
+              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-stone-500">Output</div>
               {viewReport.output == null ? (
-                <div className="rounded-lg border border-dashed border-slate-800 bg-slate-950/60 px-4 py-6 text-center text-sm text-slate-500">
+                <div className="rounded-lg border border-dashed border-stone-800 bg-stone-950/60 px-4 py-6 text-center text-sm text-stone-500">
                   No output yet. Render this report to generate its payload.
                 </div>
               ) : (
-                <pre className="max-h-80 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-4 text-xs text-slate-300">
+                <pre className="max-h-80 overflow-auto rounded-lg border border-stone-800 bg-stone-950 p-4 text-xs text-stone-300">
                   {JSON.stringify(viewReport.output, null, 2)}
                 </pre>
               )}

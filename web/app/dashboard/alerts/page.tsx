@@ -191,7 +191,7 @@ export default function AlertsPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Alerts</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-stone-500">
             Threshold breaches detected against your alert rules. Scan, acknowledge, and resolve.
           </p>
         </div>
@@ -200,7 +200,7 @@ export default function AlertsPage() {
             <select
               value={workspaceId}
               onChange={(e) => onSelectWorkspace(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -248,8 +248,8 @@ export default function AlertsPage() {
                       onClick={() => setStatusTab(t.key)}
                       className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
                         statusTab === t.key
-                          ? 'bg-sky-500/15 text-sky-300'
-                          : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100'
+                          ? 'bg-rose-500/15 text-rose-300'
+                          : 'text-stone-400 hover:bg-stone-800 hover:text-stone-100'
                       }`}
                     >
                       {t.label}
@@ -260,7 +260,7 @@ export default function AlertsPage() {
                   <select
                     value={severityFilter}
                     onChange={(e) => setSeverityFilter(e.target.value)}
-                    className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                    className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                   >
                     <option value="all">All severities</option>
                     {severities.map((s) => (
@@ -273,7 +273,7 @@ export default function AlertsPage() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search alerts..."
-                    className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500 focus:outline-none"
+                    className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-1.5 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -298,7 +298,7 @@ export default function AlertsPage() {
                   />
                 </div>
               ) : (
-                <ul className="divide-y divide-slate-800">
+                <ul className="divide-y divide-stone-800">
                   {filtered.map((a) => {
                     const s = a.status.toLowerCase()
                     const isOpen = s === 'open' || s === 'triggered' || s === 'firing'
@@ -310,15 +310,15 @@ export default function AlertsPage() {
                           <div className="flex flex-wrap items-center gap-2">
                             <Badge tone={severityTone(a.severity)}>{metricLabel(a.severity)}</Badge>
                             <Badge tone={statusTone(a.status)}>{metricLabel(a.status)}</Badge>
-                            <span className="text-sm font-medium text-slate-200">{metricLabel(a.metric)}</span>
+                            <span className="text-sm font-medium text-stone-200">{metricLabel(a.metric)}</span>
                           </div>
-                          <p className="mt-1 text-sm text-slate-400">{a.message}</p>
-                          <div className="mt-1 flex flex-wrap gap-x-4 gap-y-0.5 text-xs text-slate-500">
+                          <p className="mt-1 text-sm text-stone-400">{a.message}</p>
+                          <div className="mt-1 flex flex-wrap gap-x-4 gap-y-0.5 text-xs text-stone-500">
                             <span>
                               Observed{' '}
                               <span className="font-medium text-rose-300">{fmtValue(a.metric, a.observed_value)}</span>{' '}
                               vs threshold{' '}
-                              <span className="font-medium text-slate-400">{fmtValue(a.metric, a.threshold)}</span>
+                              <span className="font-medium text-stone-400">{fmtValue(a.metric, a.threshold)}</span>
                             </span>
                             {a.triggered_at && <span>Triggered {new Date(a.triggered_at).toLocaleString()}</span>}
                             {a.sender_id && <span className="font-mono">sender {a.sender_id.slice(0, 8)}</span>}

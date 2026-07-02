@@ -245,7 +245,7 @@ export default function CampaignsPage() {
         description="Create a workspace from the dashboard to view campaign rollups."
         action={
           <Link href="/dashboard">
-            <span className="text-sm text-sky-400 hover:text-sky-300">Go to dashboard →</span>
+            <span className="text-sm text-rose-400 hover:text-rose-300">Go to dashboard →</span>
           </Link>
         }
       />
@@ -256,7 +256,7 @@ export default function CampaignsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-xl font-bold tracking-tight text-white">Campaigns</h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-stone-500">
           Per-campaign engagement and deliverability rollups across all sends in this workspace.
         </p>
       </div>
@@ -278,7 +278,7 @@ export default function CampaignsPage() {
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold text-slate-200">Rollup</span>
+            <span className="text-sm font-semibold text-stone-200">Rollup</span>
             <Badge tone="slate">{filtered.length}</Badge>
           </div>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -286,12 +286,12 @@ export default function CampaignsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search name or subject..."
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none sm:w-56"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none sm:w-56"
             />
             <select
               value={senderFilter}
               onChange={(e) => setSenderFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="all">All senders</option>
               {senders.map((s) => (
@@ -315,7 +315,7 @@ export default function CampaignsPage() {
                 action={
                   campaigns.length === 0 ? (
                     <Link href="/dashboard/imports">
-                      <span className="text-sm text-sky-400 hover:text-sky-300">Go to imports →</span>
+                      <span className="text-sm text-rose-400 hover:text-rose-300">Go to imports →</span>
                     </Link>
                   ) : undefined
                 }
@@ -354,23 +354,23 @@ export default function CampaignsPage() {
                 {filtered.map((c) => (
                   <TR key={c.id}>
                     <TD>
-                      <Link href={`/dashboard/campaigns/${c.id}`} className="font-medium text-sky-300 hover:text-sky-200">
+                      <Link href={`/dashboard/campaigns/${c.id}`} className="font-medium text-rose-300 hover:text-rose-200">
                         {c.name || 'Untitled campaign'}
                       </Link>
-                      {c.subject && <div className="truncate text-xs text-slate-500">{c.subject}</div>}
+                      {c.subject && <div className="truncate text-xs text-stone-500">{c.subject}</div>}
                     </TD>
-                    <TD className="text-slate-400">{senderName(c.sender_id)}</TD>
-                    <TD className="whitespace-nowrap text-right text-xs text-slate-400">{fmtDate(c.sent_at)}</TD>
+                    <TD className="text-stone-400">{senderName(c.sender_id)}</TD>
+                    <TD className="whitespace-nowrap text-right text-xs text-stone-400">{fmtDate(c.sent_at)}</TD>
                     <TD className="text-right tabular-nums">{c._sends.toLocaleString()}</TD>
-                    <TD className="text-right tabular-nums text-slate-200">{pct(c._openRate)}</TD>
-                    <TD className="text-right tabular-nums text-slate-200">{pct(c._clickRate)}</TD>
+                    <TD className="text-right tabular-nums text-stone-200">{pct(c._openRate)}</TD>
+                    <TD className="text-right tabular-nums text-stone-200">{pct(c._clickRate)}</TD>
                     <TD className="text-right tabular-nums">
-                      <span className={c._bounceRate >= 0.02 ? 'text-amber-300' : 'text-slate-300'}>{pct(c._bounceRate)}</span>
+                      <span className={c._bounceRate >= 0.02 ? 'text-amber-300' : 'text-stone-300'}>{pct(c._bounceRate)}</span>
                     </TD>
                     <TD className="text-right">
                       <Badge tone={complaintTone(c._complaintRate)}>{pct(c._complaintRate)}</Badge>
                     </TD>
-                    <TD className="text-right tabular-nums text-slate-300">
+                    <TD className="text-right tabular-nums text-stone-300">
                       {c._revenue > 0 ? `$${(c._revenue / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })}` : '—'}
                     </TD>
                   </TR>

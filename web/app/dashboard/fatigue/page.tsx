@@ -181,7 +181,7 @@ export default function FatiguePage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Send Fatigue</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Frequency vs engagement curves and the cadence that maximizes engagement while cutting complaint risk.
           </p>
         </div>
@@ -190,7 +190,7 @@ export default function FatiguePage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -201,7 +201,7 @@ export default function FatiguePage() {
             value={selectedSender}
             onChange={(e) => setSelectedSender(e.target.value)}
             disabled={senders.length === 0}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none disabled:opacity-50"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none disabled:opacity-50"
           >
             {senders.length === 0 && <option value="">No senders</option>}
             {senders.map((s) => (
@@ -211,7 +211,7 @@ export default function FatiguePage() {
           <select
             value={selectedSegment}
             onChange={(e) => setSelectedSegment(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             <option value="">All recipients</option>
             {segments.map((s) => (
@@ -280,7 +280,7 @@ export default function FatiguePage() {
             <CardHeader className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-base font-semibold text-white">Frequency / engagement curve</h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-stone-500">
                   {selected?.name || 'Curve'} · {senderName(senderById.get(selected?.sender_id || selected?.senderId || ''))}
                   {(selected?.segment_id || selected?.segmentId)
                     ? ` · ${segmentById.get((selected?.segment_id || selected?.segmentId) as string)?.name || 'Segment'}`
@@ -296,8 +296,8 @@ export default function FatiguePage() {
                 curve={selected?.curve || []}
                 recommended={num(selected?.recommended_cadence_per_week, selected?.recommendedCadencePerWeek)}
               />
-              <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-slate-500">
-                <span className="inline-flex items-center gap-1.5"><span className="inline-block h-2 w-3 rounded-sm bg-sky-400" /> Engagement rate</span>
+              <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-stone-500">
+                <span className="inline-flex items-center gap-1.5"><span className="inline-block h-2 w-3 rounded-sm bg-rose-400" /> Engagement rate</span>
                 <span className="inline-flex items-center gap-1.5"><span className="inline-block h-2 w-3 rounded-sm bg-rose-400" /> Complaint rate</span>
                 <span className="inline-flex items-center gap-1.5"><span className="inline-block h-3 w-0.5 bg-emerald-400" /> Recommended cadence</span>
               </div>
@@ -307,7 +307,7 @@ export default function FatiguePage() {
           <Card>
             <CardHeader>
               <h2 className="text-base font-semibold text-white">Saved analyses</h2>
-              <p className="text-xs text-slate-500">Select a row to inspect its curve above.</p>
+              <p className="text-xs text-stone-500">Select a row to inspect its curve above.</p>
             </CardHeader>
             <CardBody className="px-0 py-0">
               <Table>
@@ -329,9 +329,9 @@ export default function FatiguePage() {
                       <TR
                         key={a.id}
                         onClick={() => setSelectedId(a.id)}
-                        className={`cursor-pointer ${isSel ? 'bg-sky-500/10' : ''}`}
+                        className={`cursor-pointer ${isSel ? 'bg-rose-500/10' : ''}`}
                       >
-                        <TD className="font-medium text-slate-200">{a.name || 'Curve'}</TD>
+                        <TD className="font-medium text-stone-200">{a.name || 'Curve'}</TD>
                         <TD>{senderName(senderById.get(a.sender_id || a.senderId || ''))}</TD>
                         <TD>{(a.segment_id || a.segmentId) ? (segmentById.get((a.segment_id || a.segmentId) as string)?.name || 'Segment') : 'All recipients'}</TD>
                         <TD className="text-right">{cadence(num(a.recommended_cadence_per_week, a.recommendedCadencePerWeek))}</TD>
@@ -341,7 +341,7 @@ export default function FatiguePage() {
                             {overmailing(a) ? 'Over-mailing' : 'Healthy'}
                           </Badge>
                         </TD>
-                        <TD className="text-slate-500">{fmtDate(a.created_at || a.createdAt)}</TD>
+                        <TD className="text-stone-500">{fmtDate(a.created_at || a.createdAt)}</TD>
                       </TR>
                     )
                   })}
@@ -366,7 +366,7 @@ function FatigueChart({ curve, recommended }: { curve: CurvePoint[]; recommended
     .sort((a, b) => (a.freq as number) - (b.freq as number))
 
   if (data.length === 0) {
-    return <div className="py-10 text-center text-sm text-slate-500">No curve data. Compute a fatigue curve to plot frequency against engagement.</div>
+    return <div className="py-10 text-center text-sm text-stone-500">No curve data. Compute a fatigue curve to plot frequency against engagement.</div>
   }
 
   const W = 720

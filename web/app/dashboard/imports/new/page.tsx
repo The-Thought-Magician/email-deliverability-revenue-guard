@@ -269,7 +269,7 @@ export default function NewImportPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold tracking-tight text-white">New import</h1>
-          <p className="mt-1 text-sm text-slate-500">Upload an ESP export, map columns to send-event fields, and ingest.</p>
+          <p className="mt-1 text-sm text-stone-500">Upload an ESP export, map columns to send-event fields, and ingest.</p>
         </div>
         <Link href="/dashboard/imports">
           <Button variant="ghost">Cancel</Button>
@@ -287,14 +287,14 @@ export default function NewImportPage() {
             <span
               className={`flex h-6 w-6 items-center justify-center rounded-full border text-[11px] font-semibold ${
                 step >= (s.n as 1 | 2 | 3)
-                  ? 'border-sky-500 bg-sky-500/15 text-sky-300'
-                  : 'border-slate-700 bg-slate-900 text-slate-500'
+                  ? 'border-rose-500 bg-rose-500/15 text-rose-300'
+                  : 'border-stone-700 bg-stone-900 text-stone-500'
               }`}
             >
               {s.n}
             </span>
-            <span className={step >= (s.n as 1 | 2 | 3) ? 'text-slate-200' : 'text-slate-600'}>{s.label}</span>
-            {idx < 2 && <span className="mx-1 h-px w-8 bg-slate-800" />}
+            <span className={step >= (s.n as 1 | 2 | 3) ? 'text-stone-200' : 'text-stone-600'}>{s.label}</span>
+            {idx < 2 && <span className="mx-1 h-px w-8 bg-stone-800" />}
           </div>
         ))}
       </div>
@@ -305,11 +305,11 @@ export default function NewImportPage() {
       {step === 1 && (
         <Card>
           <CardHeader>
-            <span className="text-sm font-semibold text-slate-200">1. Choose sender and data source</span>
+            <span className="text-sm font-semibold text-stone-200">1. Choose sender and data source</span>
           </CardHeader>
           <CardBody className="space-y-5">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Sender</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Sender</label>
               {senders.length === 0 ? (
                 <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
                   No senders yet. Create a sender first, then return here to import its events.{' '}
@@ -321,7 +321,7 @@ export default function NewImportPage() {
                 <select
                   value={senderId}
                   onChange={(e) => setSenderId(e.target.value)}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none sm:max-w-md"
+                  className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none sm:max-w-md"
                 >
                   {senders.map((s) => (
                     <option key={s.id} value={s.id}>
@@ -334,9 +334,9 @@ export default function NewImportPage() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-4">
-                <div className="text-sm font-medium text-slate-200">Upload a CSV file</div>
-                <p className="mt-1 text-xs text-slate-500">First row must be the header.</p>
+              <div className="rounded-lg border border-stone-800 bg-stone-950/50 p-4">
+                <div className="text-sm font-medium text-stone-200">Upload a CSV file</div>
+                <p className="mt-1 text-xs text-stone-500">First row must be the header.</p>
                 <input ref={fileRef} type="file" accept=".csv,text/csv" onChange={onFile} className="hidden" />
                 <Button
                   variant="secondary"
@@ -346,16 +346,16 @@ export default function NewImportPage() {
                 >
                   Choose file
                 </Button>
-                {filename && <div className="mt-2 text-xs text-slate-400">Selected: {filename}</div>}
+                {filename && <div className="mt-2 text-xs text-stone-400">Selected: {filename}</div>}
               </div>
 
-              <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-4">
+              <div className="rounded-lg border border-stone-800 bg-stone-950/50 p-4">
                 <div className="flex items-center justify-between">
-                  <div className="text-sm font-medium text-slate-200">Paste CSV</div>
+                  <div className="text-sm font-medium text-stone-200">Paste CSV</div>
                   <button
                     type="button"
                     onClick={() => setRawText(SAMPLE_CSV)}
-                    className="text-xs text-sky-400 hover:text-sky-300"
+                    className="text-xs text-rose-400 hover:text-rose-300"
                   >
                     Use example
                   </button>
@@ -365,7 +365,7 @@ export default function NewImportPage() {
                   onChange={(e) => setRawText(e.target.value)}
                   placeholder="email,event,sent_at..."
                   rows={5}
-                  className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none"
+                  className="mt-2 w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 font-mono text-xs text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
                 />
                 <Button variant="secondary" className="mt-3" onClick={onPaste} disabled={!rawText.trim() || senders.length === 0}>
                   Parse pasted rows
@@ -380,28 +380,28 @@ export default function NewImportPage() {
       {step === 2 && (
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-slate-200">2. Map columns ({headers.length})</span>
+            <span className="text-sm font-semibold text-stone-200">2. Map columns ({headers.length})</span>
             <Badge tone="slate">{dataRows.length} rows</Badge>
           </CardHeader>
           <CardBody className="space-y-4">
-            <p className="text-xs text-slate-500">
-              Match each source column to a send-event field. <span className="text-slate-300">Recipient email</span> and{' '}
-              <span className="text-slate-300">Event type</span> are required.
+            <p className="text-xs text-stone-500">
+              Match each source column to a send-event field. <span className="text-stone-300">Recipient email</span> and{' '}
+              <span className="text-stone-300">Event type</span> are required.
             </p>
             <div className="grid gap-3 sm:grid-cols-2">
               {headers.map((h) => (
-                <div key={h} className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/50 px-3 py-2">
+                <div key={h} className="flex items-center gap-3 rounded-lg border border-stone-800 bg-stone-950/50 px-3 py-2">
                   <div className="min-w-0 flex-1">
-                    <div className="truncate font-mono text-sm text-slate-200">{h}</div>
-                    <div className="truncate text-xs text-slate-600">
+                    <div className="truncate font-mono text-sm text-stone-200">{h}</div>
+                    <div className="truncate text-xs text-stone-600">
                       e.g. {dataRows[0]?.[headers.indexOf(h)] ?? '—'}
                     </div>
                   </div>
-                  <span className="text-slate-600">→</span>
+                  <span className="text-stone-600">→</span>
                   <select
                     value={mapping[h] ?? IGNORE}
                     onChange={(e) => setMapping((m) => ({ ...m, [h]: e.target.value }))}
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                    className="rounded-lg border border-stone-700 bg-stone-950 px-2 py-1.5 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                   >
                     <option value={IGNORE}>Ignore</option>
                     {TARGET_FIELDS.map((f) => (
@@ -416,12 +416,12 @@ export default function NewImportPage() {
             </div>
 
             <div className="flex flex-wrap gap-2 text-xs">
-              <span className="text-slate-500">Required:</span>
+              <span className="text-stone-500">Required:</span>
               <Badge tone={hasEmail ? 'green' : 'rose'}>email {hasEmail ? '✓' : 'missing'}</Badge>
               <Badge tone={hasEventType ? 'green' : 'rose'}>event_type {hasEventType ? '✓' : 'missing'}</Badge>
             </div>
 
-            <div className="flex justify-between border-t border-slate-800 pt-4">
+            <div className="flex justify-between border-t border-stone-800 pt-4">
               <Button variant="ghost" onClick={() => setStep(1)}>
                 Back
               </Button>
@@ -437,34 +437,34 @@ export default function NewImportPage() {
       {step === 3 && (
         <Card>
           <CardHeader>
-            <span className="text-sm font-semibold text-slate-200">3. Review and import</span>
+            <span className="text-sm font-semibold text-stone-200">3. Review and import</span>
           </CardHeader>
           <CardBody className="space-y-4">
             <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
               <div>
-                <div className="text-xs uppercase tracking-wide text-slate-500">Sender</div>
-                <div className="mt-0.5 truncate text-slate-200">
+                <div className="text-xs uppercase tracking-wide text-stone-500">Sender</div>
+                <div className="mt-0.5 truncate text-stone-200">
                   {senders.find((s) => s.id === senderId)?.friendly_name ||
                     senders.find((s) => s.id === senderId)?.domain ||
                     senderId}
                 </div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-slate-500">File</div>
-                <div className="mt-0.5 truncate text-slate-200">{filename || 'import.csv'}</div>
+                <div className="text-xs uppercase tracking-wide text-stone-500">File</div>
+                <div className="mt-0.5 truncate text-stone-200">{filename || 'import.csv'}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-slate-500">Rows</div>
-                <div className="mt-0.5 text-slate-200">{dataRows.length.toLocaleString()}</div>
+                <div className="text-xs uppercase tracking-wide text-stone-500">Rows</div>
+                <div className="mt-0.5 text-stone-200">{dataRows.length.toLocaleString()}</div>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wide text-slate-500">Mapped fields</div>
-                <div className="mt-0.5 text-slate-200">{mappedTargets.size}</div>
+                <div className="text-xs uppercase tracking-wide text-stone-500">Mapped fields</div>
+                <div className="mt-0.5 text-stone-200">{mappedTargets.size}</div>
               </div>
             </div>
 
             <div>
-              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Preview (first 5 rows)</div>
+              <div className="mb-2 text-xs font-medium uppercase tracking-wide text-stone-500">Preview (first 5 rows)</div>
               {dataRows.length === 0 ? (
                 <EmptyState title="No rows to import" description="Go back and supply data." />
               ) : (
@@ -483,7 +483,7 @@ export default function NewImportPage() {
                         <TR key={i}>
                           {TARGET_FIELDS.filter((f) => mappedTargets.has(f.key)).map((f) => (
                             <TD key={f.key} className="max-w-[16rem] truncate">
-                              {row[f.key] ?? <span className="text-slate-600">—</span>}
+                              {row[f.key] ?? <span className="text-stone-600">—</span>}
                             </TD>
                           ))}
                         </TR>
@@ -497,7 +497,7 @@ export default function NewImportPage() {
               <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">{submitError}</div>
             )}
 
-            <div className="flex justify-between border-t border-slate-800 pt-4">
+            <div className="flex justify-between border-t border-stone-800 pt-4">
               <Button variant="ghost" onClick={() => setStep(2)} disabled={submitting}>
                 Back
               </Button>

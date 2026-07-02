@@ -10,7 +10,7 @@ interface StatProps {
 
 const valueTones: Record<NonNullable<StatProps['tone']>, string> = {
   default: 'text-white',
-  sky: 'text-sky-300',
+  sky: 'text-rose-300',
   green: 'text-emerald-300',
   amber: 'text-amber-300',
   rose: 'text-rose-300',
@@ -18,10 +18,10 @@ const valueTones: Record<NonNullable<StatProps['tone']>, string> = {
 
 export function Stat({ label, value, hint, tone = 'default', className = '' }: StatProps) {
   return (
-    <div className={`rounded-xl border border-slate-800 bg-slate-900/60 px-5 py-4 ${className}`}>
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</div>
+    <div className={`rounded-xl border border-stone-800 bg-stone-900/60 px-5 py-4 ${className}`}>
+      <div className="text-xs font-medium uppercase tracking-wide text-stone-500">{label}</div>
       <div className={`mt-1 text-2xl font-semibold ${valueTones[tone]}`}>{value}</div>
-      {hint != null && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
+      {hint != null && <div className="mt-1 text-xs text-stone-500">{hint}</div>}
     </div>
   )
 }

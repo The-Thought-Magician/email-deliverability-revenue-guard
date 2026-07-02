@@ -186,7 +186,7 @@ export default function ListHealthPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">List Health Ledger</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Active vs dormant balance, role accounts, and bounce pressure with a graded snapshot history.
           </p>
         </div>
@@ -195,7 +195,7 @@ export default function ListHealthPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -206,7 +206,7 @@ export default function ListHealthPage() {
             value={selectedSender}
             onChange={(e) => onSenderChange(e.target.value)}
             disabled={senders.length === 0}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none disabled:opacity-50"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none disabled:opacity-50"
           >
             {senders.length === 0 && <option value="">No senders</option>}
             {senders.map((s) => (
@@ -274,10 +274,10 @@ export default function ListHealthPage() {
                 <BounceBar label="Hard bounce rate" value={num(latest.hard_bounce_rate, latest.hardBounceRate)} tone="rose" />
                 <BounceBar label="Soft bounce rate" value={num(latest.soft_bounce_rate, latest.softBounceRate)} tone="amber" />
                 <div className="pt-2">
-                  <div className="mb-1 flex justify-between text-xs text-slate-500">
+                  <div className="mb-1 flex justify-between text-xs text-stone-500">
                     <span>Active</span><span>Dormant</span>
                   </div>
-                  <div className="flex h-3 overflow-hidden rounded-full bg-slate-800">
+                  <div className="flex h-3 overflow-hidden rounded-full bg-stone-800">
                     <div className="bg-emerald-500" style={{ width: `${activePct}%` }} />
                     <div className="bg-amber-500/70" style={{ width: `${100 - activePct}%` }} />
                   </div>
@@ -291,15 +291,15 @@ export default function ListHealthPage() {
               </CardHeader>
               <CardBody>
                 {drivers.length === 0 ? (
-                  <p className="text-sm text-slate-500">No specific drivers recorded for this snapshot.</p>
+                  <p className="text-sm text-stone-500">No specific drivers recorded for this snapshot.</p>
                 ) : (
                   <ul className="space-y-3">
                     {drivers.map((d, i) => (
-                      <li key={i} className="flex items-start gap-3 rounded-lg border border-slate-800 bg-slate-900/40 px-4 py-3">
-                        <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-sky-400" />
+                      <li key={i} className="flex items-start gap-3 rounded-lg border border-stone-800 bg-stone-900/40 px-4 py-3">
+                        <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-rose-400" />
                         <div>
-                          <div className="text-sm font-medium text-slate-200">{d.label}</div>
-                          {d.detail && <div className="text-xs text-slate-500">{d.detail}</div>}
+                          <div className="text-sm font-medium text-stone-200">{d.label}</div>
+                          {d.detail && <div className="text-xs text-stone-500">{d.detail}</div>}
                         </div>
                       </li>
                     ))}
@@ -315,7 +315,7 @@ export default function ListHealthPage() {
             </CardHeader>
             <CardBody className="px-0 py-0">
               {history.length === 0 ? (
-                <div className="px-5 py-8 text-sm text-slate-500">Only one snapshot so far. Compute again over time to build trend history.</div>
+                <div className="px-5 py-8 text-sm text-stone-500">Only one snapshot so far. Compute again over time to build trend history.</div>
               ) : (
                 <Table>
                   <THead>
@@ -359,10 +359,10 @@ function BounceBar({ label, value, tone }: { label: string; value?: number; tone
   return (
     <div>
       <div className="mb-1 flex justify-between text-xs">
-        <span className="text-slate-400">{label}</span>
-        <span className="text-slate-200">{n.toFixed(2)}%</span>
+        <span className="text-stone-400">{label}</span>
+        <span className="text-stone-200">{n.toFixed(2)}%</span>
       </div>
-      <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+      <div className="h-2 overflow-hidden rounded-full bg-stone-800">
         <div className={color} style={{ width: `${width}%` }} />
       </div>
     </div>

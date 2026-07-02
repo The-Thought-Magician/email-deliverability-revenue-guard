@@ -21,35 +21,35 @@ export default function SignUp() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
+    <main className="flex min-h-screen items-center justify-center bg-stone-950 px-4">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-500 text-base font-black text-slate-950">E</span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-500 text-base font-black text-stone-950">E</span>
             <span className="text-lg font-bold tracking-tight text-white">EmailDeliverabilityRevenueGuard</span>
           </Link>
           <h1 className="mt-5 text-2xl font-bold text-white">Create your account</h1>
-          <p className="mt-1 text-sm text-slate-500">Free for every feature. Dollarize your deliverability decay in minutes.</p>
+          <p className="mt-1 text-sm text-stone-500">Free for every feature. Dollarize your deliverability decay in minutes.</p>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-slate-800 bg-slate-900/60 p-8">
+        <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-stone-800 bg-stone-900/60 p-8">
           {error && <div className="rounded-lg border border-rose-700/50 bg-rose-900/30 p-3 text-sm text-rose-300">{error}</div>}
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Name</label>
-            <input name="name" type="text" required className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none" placeholder="Your name" />
+            <label className="mb-1 block text-sm font-medium text-stone-300">Name</label>
+            <input name="name" type="text" required className="w-full rounded-lg border border-stone-700 bg-stone-800 px-4 py-3 text-white placeholder-stone-500 focus:border-rose-500 focus:outline-none" placeholder="Your name" />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Email</label>
-            <input name="email" type="email" required className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-sky-500 focus:outline-none" placeholder="you@brand.com" />
+            <label className="mb-1 block text-sm font-medium text-stone-300">Email</label>
+            <input name="email" type="email" required className="w-full rounded-lg border border-stone-700 bg-stone-800 px-4 py-3 text-white placeholder-stone-500 focus:border-rose-500 focus:outline-none" placeholder="you@brand.com" />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Password</label>
-            <input name="password" type="password" required minLength={8} className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white focus:border-sky-500 focus:outline-none" />
+            <label className="mb-1 block text-sm font-medium text-stone-300">Password</label>
+            <input name="password" type="password" required minLength={8} className="w-full rounded-lg border border-stone-700 bg-stone-800 px-4 py-3 text-white focus:border-rose-500 focus:outline-none" />
           </div>
-          <button type="submit" disabled={loading} className="w-full rounded-lg bg-sky-500 py-3 font-semibold text-slate-950 transition-colors hover:bg-sky-400 disabled:opacity-50">
+          <button type="submit" disabled={loading} className="w-full rounded-lg bg-rose-500 py-3 font-semibold text-stone-950 transition-colors hover:bg-rose-400 disabled:opacity-50">
             {loading ? 'Creating account...' : 'Create Account'}
           </button>
-          <p className="text-center text-sm text-slate-400">
-            Already have an account? <Link href="/auth/sign-in" className="text-sky-400 hover:text-sky-300">Sign in</Link>
+          <p className="text-center text-sm text-stone-400">
+            Already have an account? <Link href="/auth/sign-in" className="text-rose-400 hover:text-rose-300">Sign in</Link>
           </p>
         </form>
       </div>

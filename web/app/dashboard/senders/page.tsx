@@ -222,7 +222,7 @@ export default function SendersPage() {
       <EmptyState
         title="No workspace selected"
         description="Create or select a workspace from the dashboard first, then add senders here."
-        action={<a href="/dashboard" className="text-sm text-sky-400 hover:text-sky-300">Go to dashboard →</a>}
+        action={<a href="/dashboard" className="text-sm text-rose-400 hover:text-rose-300">Go to dashboard →</a>}
       />
     )
   }
@@ -232,7 +232,7 @@ export default function SendersPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-white">Senders</h1>
-          <p className="mt-1 text-sm text-slate-500">Sending domains and subdomains tracked for deliverability and revenue.</p>
+          <p className="mt-1 text-sm text-stone-500">Sending domains and subdomains tracked for deliverability and revenue.</p>
         </div>
         <Button onClick={openCreate}>Add sender</Button>
       </div>
@@ -248,7 +248,7 @@ export default function SendersPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by domain or name..."
-              className="w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30 sm:max-w-xs"
+              className="w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30 sm:max-w-xs"
             />
             <div className="flex flex-wrap gap-2">
               {['all', ...STATUS_OPTIONS].map((s) => (
@@ -257,8 +257,8 @@ export default function SendersPage() {
                   onClick={() => setStatusFilter(s)}
                   className={`rounded-full border px-3 py-1 text-xs font-medium capitalize transition-colors ${
                     statusFilter === s
-                      ? 'border-sky-500/50 bg-sky-500/15 text-sky-300'
-                      : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200'
+                      ? 'border-rose-500/50 bg-rose-500/15 text-rose-300'
+                      : 'border-stone-800 bg-stone-900/60 text-stone-400 hover:text-stone-200'
                   }`}
                 >
                   {s}
@@ -292,16 +292,16 @@ export default function SendersPage() {
                 {filtered.map((s) => (
                   <TR key={s.id}>
                     <TD>
-                      <div className="font-medium text-slate-100">{s.friendly_name || s.domain || 'Untitled sender'}</div>
-                      {s.created_at && <div className="text-xs text-slate-600">Added {new Date(s.created_at).toLocaleDateString()}</div>}
+                      <div className="font-medium text-stone-100">{s.friendly_name || s.domain || 'Untitled sender'}</div>
+                      {s.created_at && <div className="text-xs text-stone-600">Added {new Date(s.created_at).toLocaleDateString()}</div>}
                     </TD>
                     <TD>
-                      <span className="font-mono text-slate-300">{s.subdomain ? `${s.subdomain}.${s.domain}` : s.domain}</span>
+                      <span className="font-mono text-stone-300">{s.subdomain ? `${s.subdomain}.${s.domain}` : s.domain}</span>
                     </TD>
                     <TD>
                       <Badge tone={statusTone(s.status)}>{s.status ?? 'unknown'}</Badge>
                     </TD>
-                    <TD className="text-right font-mono text-slate-300">
+                    <TD className="text-right font-mono text-stone-300">
                       {s.revenue_per_send_cents != null ? `$${(s.revenue_per_send_cents / 100).toFixed(4)}` : '—'}
                     </TD>
                     <TD className="text-right">
@@ -342,7 +342,7 @@ export default function SendersPage() {
               disabled={!!editing}
               onChange={(e) => setForm((f) => ({ ...f, domain: e.target.value }))}
               placeholder="acme.com"
-              className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30 disabled:opacity-50"
+              className="mt-1 w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30 disabled:opacity-50"
             />
           </Field>
           {!editing && (
@@ -351,7 +351,7 @@ export default function SendersPage() {
                 value={form.subdomain}
                 onChange={(e) => setForm((f) => ({ ...f, subdomain: e.target.value }))}
                 placeholder="news"
-                className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30"
+                className="mt-1 w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30"
               />
             </Field>
           )}
@@ -360,7 +360,7 @@ export default function SendersPage() {
               value={form.friendly_name}
               onChange={(e) => setForm((f) => ({ ...f, friendly_name: e.target.value }))}
               placeholder="Marketing newsletter"
-              className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30"
+              className="mt-1 w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30"
             />
           </Field>
           <div className="grid grid-cols-2 gap-4">
@@ -368,7 +368,7 @@ export default function SendersPage() {
               <select
                 value={form.status}
                 onChange={(e) => setForm((f) => ({ ...f, status: e.target.value }))}
-                className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30"
+                className="mt-1 w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30"
               >
                 {STATUS_OPTIONS.map((s) => (
                   <option key={s} value={s} className="capitalize">{s}</option>
@@ -381,7 +381,7 @@ export default function SendersPage() {
                 onChange={(e) => setForm((f) => ({ ...f, revenue_per_send: e.target.value }))}
                 placeholder="0.12"
                 inputMode="decimal"
-                className="mt-1 w-full rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/30"
+                className="mt-1 w-full rounded-lg border border-stone-800 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500/50 focus:outline-none focus:ring-2 focus:ring-rose-500/30"
               />
             </Field>
           </div>
@@ -402,7 +402,7 @@ export default function SendersPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-stone-300">
           Delete <span className="font-medium text-white">{deleteTarget?.friendly_name || deleteTarget?.domain}</span>?
           This archives the sender and its associated analytics.
         </p>
@@ -414,9 +414,9 @@ export default function SendersPage() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-slate-300">{label}</label>
+      <label className="block text-sm font-medium text-stone-300">{label}</label>
       {children}
-      {hint && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
+      {hint && <p className="mt-1 text-xs text-stone-500">{hint}</p>}
     </div>
   )
 }

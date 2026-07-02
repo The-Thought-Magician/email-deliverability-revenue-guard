@@ -197,7 +197,7 @@ export default function IntegrationsPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Integrations</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Connect your ESP and pull send events on demand. Each pull creates an import job that normalizes events into the platform.
           </p>
         </div>
@@ -206,7 +206,7 @@ export default function IntegrationsPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -223,9 +223,9 @@ export default function IntegrationsPage() {
         </div>
       )}
       {notice && (
-        <div className="flex items-start justify-between gap-3 rounded-lg border border-sky-500/30 bg-sky-500/10 px-4 py-3 text-sm text-sky-200">
+        <div className="flex items-start justify-between gap-3 rounded-lg border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
           <span>{notice}</span>
-          <button onClick={() => setNotice('')} className="text-sky-400 hover:text-sky-200" aria-label="Dismiss">✕</button>
+          <button onClick={() => setNotice('')} className="text-rose-400 hover:text-rose-200" aria-label="Dismiss">✕</button>
         </div>
       )}
 
@@ -273,10 +273,10 @@ export default function IntegrationsPage() {
                       const synced = lastSynced(i)
                       return (
                         <TR key={i.id}>
-                          <TD className="font-medium text-slate-100">{displayName(i)}</TD>
+                          <TD className="font-medium text-stone-100">{displayName(i)}</TD>
                           <TD>{providerLabel(i.provider)}</TD>
                           <TD><Badge tone={statusTone(i.status)}>{i.status || 'unknown'}</Badge></TD>
-                          <TD>{synced ? <span className="text-slate-300">{fmtDateTime(synced)}</span> : <span className="text-slate-600">Never</span>}</TD>
+                          <TD>{synced ? <span className="text-stone-300">{fmtDateTime(synced)}</span> : <span className="text-stone-600">Never</span>}</TD>
                           <TD className="text-right">
                             <div className="flex justify-end gap-2">
                               <Button variant="secondary" className="px-3 py-1.5 text-xs" onClick={() => pull(i)} disabled={pullingId === i.id}>
@@ -299,7 +299,7 @@ export default function IntegrationsPage() {
           <Card>
             <CardHeader>
               <h2 className="text-base font-semibold text-white">Available providers</h2>
-              <p className="text-xs text-slate-500">Supported ESP connectors you can add to this workspace.</p>
+              <p className="text-xs text-stone-500">Supported ESP connectors you can add to this workspace.</p>
             </CardHeader>
             <CardBody>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -307,10 +307,10 @@ export default function IntegrationsPage() {
                   <button
                     key={p.value}
                     onClick={() => { setForm({ provider: p.value, displayName: '', apiKey: '', endpoint: '' }); setCreateOpen(true) }}
-                    className="rounded-lg border border-slate-800 bg-slate-900/40 px-4 py-3 text-left transition-colors hover:border-sky-500/40 hover:bg-slate-900"
+                    className="rounded-lg border border-stone-800 bg-stone-900/40 px-4 py-3 text-left transition-colors hover:border-rose-500/40 hover:bg-stone-900"
                   >
-                    <div className="text-sm font-medium text-slate-100">{p.label}</div>
-                    <div className="mt-1 text-xs text-slate-500">{p.blurb}</div>
+                    <div className="text-sm font-medium text-stone-100">{p.label}</div>
+                    <div className="mt-1 text-xs text-stone-500">{p.blurb}</div>
                   </button>
                 ))}
               </div>
@@ -334,48 +334,48 @@ export default function IntegrationsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Provider</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Provider</label>
             <select
               value={form.provider}
               onChange={(e) => setForm({ ...form, provider: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {PROVIDERS.map((p) => (
                 <option key={p.value} value={p.value}>{p.label}</option>
               ))}
             </select>
-            {selectedProvider && <p className="mt-1.5 text-xs text-slate-500">{selectedProvider.blurb}</p>}
+            {selectedProvider && <p className="mt-1.5 text-xs text-stone-500">{selectedProvider.blurb}</p>}
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Display name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Display name</label>
             <input
               value={form.displayName}
               onChange={(e) => setForm({ ...form, displayName: e.target.value })}
               placeholder={providerLabel(form.provider)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
             />
           </div>
           {form.provider === 'custom' ? (
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Export endpoint URL</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">Export endpoint URL</label>
               <input
                 value={form.endpoint}
                 onChange={(e) => setForm({ ...form, endpoint: e.target.value })}
                 placeholder="https://example.com/exports/events.csv"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
               />
             </div>
           ) : (
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">API key</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">API key</label>
               <input
                 type="password"
                 value={form.apiKey}
                 onChange={(e) => setForm({ ...form, apiKey: e.target.value })}
                 placeholder="Paste your provider API key"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none"
+                className="w-full rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
               />
-              <p className="mt-1.5 text-xs text-slate-500">Stored against the connector config. Used when you trigger a pull.</p>
+              <p className="mt-1.5 text-xs text-stone-500">Stored against the connector config. Used when you trigger a pull.</p>
             </div>
           )}
         </div>

@@ -209,7 +209,7 @@ export default function CohortsPage() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Engagement Cohorts</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Recency &amp; frequency segments scored by engagement and revenue contribution.
           </p>
         </div>
@@ -218,7 +218,7 @@ export default function CohortsPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -230,7 +230,7 @@ export default function CohortsPage() {
           <select
             value={senderId}
             onChange={(e) => setSenderId(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
           >
             <option value="">All senders</option>
             {senders.map((s) => (
@@ -274,7 +274,7 @@ export default function CohortsPage() {
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
-            <h2 className="text-sm font-semibold text-slate-200">Cohorts</h2>
+            <h2 className="text-sm font-semibold text-stone-200">Cohorts</h2>
             <Badge tone="slate">{senderName(senderId)}</Badge>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -282,12 +282,12 @@ export default function CohortsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search cohorts..."
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 placeholder:text-stone-600 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
             />
             <select
               value={sortKey}
               onChange={(e) => setSortKey(e.target.value as typeof sortKey)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500/60"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-1.5 text-sm text-stone-200 focus:outline-none focus:ring-2 focus:ring-rose-500/60"
             >
               <option value="revenue_contribution_cents">Sort: Revenue</option>
               <option value="member_count">Sort: Members</option>
@@ -337,15 +337,15 @@ export default function CohortsPage() {
                   const eng = (c.engagement_rate ?? 0) <= 1 ? (c.engagement_rate ?? 0) * 100 : c.engagement_rate ?? 0
                   return (
                     <TR key={c.id}>
-                      <TD className="font-medium text-slate-100">{c.name}</TD>
+                      <TD className="font-medium text-stone-100">{c.name}</TD>
                       <TD>
-                        <span className="text-slate-400">{senderName(c.sender_id)}</span>
+                        <span className="text-stone-400">{senderName(c.sender_id)}</span>
                       </TD>
                       <TD className="text-right">
                         {c.recency_days != null ? `${c.recency_days}d` : '—'}
                       </TD>
                       <TD className="text-right">{c.min_frequency ?? '—'}</TD>
-                      <TD className="text-right font-medium text-slate-100">
+                      <TD className="text-right font-medium text-stone-100">
                         {(c.member_count ?? 0).toLocaleString()}
                       </TD>
                       <TD className="text-right">
@@ -355,13 +355,13 @@ export default function CohortsPage() {
                       </TD>
                       <TD>
                         <div className="flex items-center gap-2">
-                          <div className="h-2 w-28 overflow-hidden rounded-full bg-slate-800">
+                          <div className="h-2 w-28 overflow-hidden rounded-full bg-stone-800">
                             <div
-                              className="h-full rounded-full bg-sky-500"
+                              className="h-full rounded-full bg-rose-500"
                               style={{ width: `${Math.min(100, (rev / maxRevenue) * 100)}%` }}
                             />
                           </div>
-                          <span className="tabular-nums text-slate-200">{fmtMoney(rev, currency)}</span>
+                          <span className="tabular-nums text-stone-200">{fmtMoney(rev, currency)}</span>
                         </div>
                       </TD>
                     </TR>

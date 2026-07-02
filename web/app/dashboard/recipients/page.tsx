@@ -239,7 +239,7 @@ function RecipientsView() {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-white">Recipients</h1>
-          <p className="mt-1 text-sm text-slate-400">Per-address engagement, role-account flags and lifecycle status.</p>
+          <p className="mt-1 text-sm text-stone-400">Per-address engagement, role-account flags and lifecycle status.</p>
         </div>
         <Button variant="secondary" onClick={load}>
           Refresh
@@ -250,23 +250,23 @@ function RecipientsView() {
       <Card>
         <CardBody className="flex flex-wrap items-end gap-3">
           <label className="flex flex-1 flex-col gap-1" style={{ minWidth: 220 }}>
-            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Search email (this page)</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-stone-500">Search email (this page)</span>
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="name@domain.com"
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-600 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 placeholder-stone-600 focus:border-rose-500 focus:outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Status</span>
+            <span className="text-xs font-medium uppercase tracking-wide text-stone-500">Status</span>
             <select
               value={status}
               onChange={(e) => {
                 setStatus(e.target.value)
                 setPage(0)
               }}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-950 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               <option value="">All statuses</option>
               {STATUSES.map((s) => (
@@ -282,7 +282,7 @@ function RecipientsView() {
       {/* Table */}
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">
+          <h2 className="text-sm font-semibold text-stone-200">
             {total.toLocaleString()} recipient{total === 1 ? '' : 's'}
           </h2>
           {loading && <Spinner />}
@@ -332,7 +332,7 @@ function RecipientsView() {
                     <TR key={r.id} className="cursor-pointer" onClick={() => openDrawer(r.id)}>
                       <TD>
                         <div className="flex items-center gap-2">
-                          <span className="text-slate-200">{r.email ?? r.id}</span>
+                          <span className="text-stone-200">{r.email ?? r.id}</span>
                           {isRole && <Badge tone="amber">role</Badge>}
                         </div>
                       </TD>
@@ -344,8 +344,8 @@ function RecipientsView() {
                       <TD className="text-right">{(num(r.totalClicks, r.total_clicks) ?? 0).toLocaleString()}</TD>
                       <TD className="text-right">{(num(r.totalBounces, r.total_bounces) ?? 0).toLocaleString()}</TD>
                       <TD className="text-right">{(num(r.totalComplaints, r.total_complaints) ?? 0).toLocaleString()}</TD>
-                      <TD className="whitespace-nowrap text-slate-400">{fmtDate(r.lastEngagedAt ?? r.last_engaged_at)}</TD>
-                      <TD className="text-right text-sky-300">View →</TD>
+                      <TD className="whitespace-nowrap text-stone-400">{fmtDate(r.lastEngagedAt ?? r.last_engaged_at)}</TD>
+                      <TD className="text-right text-rose-300">View →</TD>
                     </TR>
                   )
                 })}
@@ -357,7 +357,7 @@ function RecipientsView() {
 
       {/* Pagination */}
       {total > PAGE_SIZE && (
-        <div className="flex items-center justify-between text-sm text-slate-400">
+        <div className="flex items-center justify-between text-sm text-stone-400">
           <span>
             Page {page + 1} of {totalPages}
           </span>
@@ -375,17 +375,17 @@ function RecipientsView() {
       {/* Profile drawer */}
       {openId && (
         <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm" onClick={closeDrawer} />
-          <aside className="absolute inset-y-0 right-0 flex w-full max-w-md flex-col border-l border-slate-800 bg-slate-900 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
+          <div className="absolute inset-0 bg-stone-950/70 backdrop-blur-sm" onClick={closeDrawer} />
+          <aside className="absolute inset-y-0 right-0 flex w-full max-w-md flex-col border-l border-stone-800 bg-stone-900 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-stone-800 px-5 py-4">
               <h2 className="text-sm font-semibold text-white">Recipient profile</h2>
-              <button onClick={closeDrawer} className="text-slate-500 hover:text-white" aria-label="Close">
+              <button onClick={closeDrawer} className="text-stone-500 hover:text-white" aria-label="Close">
                 ✕
               </button>
             </div>
             <div className="flex-1 overflow-y-auto px-5 py-4">
               {detailLoading ? (
-                <div className="flex min-h-[30vh] items-center justify-center gap-3 text-slate-400">
+                <div className="flex min-h-[30vh] items-center justify-center gap-3 text-stone-400">
                   <Spinner />
                   <span className="text-sm">Loading profile...</span>
                 </div>
@@ -426,7 +426,7 @@ function RecipientProfile({ detail }: { detail: RecipientDetail }) {
           <Badge tone={statusTone(r.status)}>{r.status ?? 'unknown'}</Badge>
           {isRole && <Badge tone="amber">role account</Badge>}
         </div>
-        <p className="mt-1 text-xs text-slate-500">Last engaged {fmtDate(r.lastEngagedAt ?? r.last_engaged_at)}</p>
+        <p className="mt-1 text-xs text-stone-500">Last engaged {fmtDate(r.lastEngagedAt ?? r.last_engaged_at)}</p>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
@@ -438,9 +438,9 @@ function RecipientProfile({ detail }: { detail: RecipientDetail }) {
       </div>
 
       <div>
-        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Event history</h4>
+        <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-stone-500">Event history</h4>
         {events.length === 0 ? (
-          <p className="rounded-lg border border-dashed border-slate-800 bg-slate-900/40 px-4 py-6 text-center text-sm text-slate-500">
+          <p className="rounded-lg border border-dashed border-stone-800 bg-stone-900/40 px-4 py-6 text-center text-sm text-stone-500">
             No recorded events for this recipient.
           </p>
         ) : (
@@ -449,18 +449,18 @@ function RecipientProfile({ detail }: { detail: RecipientDetail }) {
               const t = e.eventType ?? e.event_type
               const cid = e.campaignId ?? e.campaign_id
               return (
-                <li key={e.id} className="flex items-start justify-between gap-3 rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2">
+                <li key={e.id} className="flex items-start justify-between gap-3 rounded-lg border border-stone-800 bg-stone-950/40 px-3 py-2">
                   <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
                       <Badge tone={eventTone(t)}>{t ?? 'event'}</Badge>
                       {(e.bounceType ?? e.bounce_type) && (
-                        <span className="text-xs text-slate-500">{e.bounceType ?? e.bounce_type}</span>
+                        <span className="text-xs text-stone-500">{e.bounceType ?? e.bounce_type}</span>
                       )}
                     </div>
                     {(e.campaignName || cid) && (
-                      <span className="text-xs text-slate-500">
+                      <span className="text-xs text-stone-500">
                         {cid ? (
-                          <Link href={`/dashboard/campaigns/${cid}`} className="text-sky-300 hover:underline">
+                          <Link href={`/dashboard/campaigns/${cid}`} className="text-rose-300 hover:underline">
                             {e.campaignName ?? 'View campaign'}
                           </Link>
                         ) : (
@@ -469,7 +469,7 @@ function RecipientProfile({ detail }: { detail: RecipientDetail }) {
                       </span>
                     )}
                   </div>
-                  <span className="whitespace-nowrap text-xs text-slate-500">{fmtDate(e.eventAt ?? e.event_at)}</span>
+                  <span className="whitespace-nowrap text-xs text-stone-500">{fmtDate(e.eventAt ?? e.event_at)}</span>
                 </li>
               )
             })}

@@ -227,7 +227,7 @@ export default function AuthenticationPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Authentication Posture</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             SPF, DKIM, and DMARC status per sending domain plus one-click unsubscribe, checked against Gmail and Yahoo bulk-sender requirements.
           </p>
         </div>
@@ -236,7 +236,7 @@ export default function AuthenticationPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -247,7 +247,7 @@ export default function AuthenticationPage() {
             value={filterSender}
             onChange={(e) => setFilterSender(e.target.value)}
             disabled={senders.length === 0}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none disabled:opacity-50"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none disabled:opacity-50"
           >
             <option value="">All senders</option>
             {senders.map((s) => (
@@ -302,7 +302,7 @@ export default function AuthenticationPage() {
             <CardHeader className="flex items-center justify-between">
               <div>
                 <h2 className="text-base font-semibold text-white">Posture checklist</h2>
-                <p className="text-xs text-slate-500">One row per sending domain. Record or update a check to keep posture current.</p>
+                <p className="text-xs text-stone-500">One row per sending domain. Record or update a check to keep posture current.</p>
               </div>
             </CardHeader>
             <CardBody className="px-0 py-0">
@@ -328,9 +328,9 @@ export default function AuthenticationPage() {
                   <TBody>
                     {rows.map(({ sender, check }) => (
                       <TR key={sender.id}>
-                        <TD className="font-medium text-slate-200">
+                        <TD className="font-medium text-stone-200">
                           {senderName(sender)}
-                          {sender.domain && <div className="text-xs text-slate-500">{sender.domain}</div>}
+                          {sender.domain && <div className="text-xs text-stone-500">{sender.domain}</div>}
                         </TD>
                         {check ? (
                           <>
@@ -344,20 +344,20 @@ export default function AuthenticationPage() {
                             <TD className="text-center">
                               <Badge tone={compliant(check) ? 'green' : 'rose'}>{compliant(check) ? 'Pass' : 'Gaps'}</Badge>
                             </TD>
-                            <TD className="text-slate-500">{fmtDate(check.checked_at || check.checkedAt || check.created_at || check.createdAt)}</TD>
+                            <TD className="text-stone-500">{fmtDate(check.checked_at || check.checkedAt || check.created_at || check.createdAt)}</TD>
                             <TD className="text-right">
                               <Button variant="secondary" className="px-2.5 py-1 text-xs" onClick={() => openEdit(sender.id)}>Update</Button>
                             </TD>
                           </>
                         ) : (
                           <>
-                            <TD className="text-center text-slate-600">—</TD>
-                            <TD className="text-center text-slate-600">—</TD>
-                            <TD className="text-center text-slate-600">—</TD>
-                            <TD className="text-center text-slate-600">—</TD>
-                            <TD className="text-center text-slate-600">—</TD>
+                            <TD className="text-center text-stone-600">—</TD>
+                            <TD className="text-center text-stone-600">—</TD>
+                            <TD className="text-center text-stone-600">—</TD>
+                            <TD className="text-center text-stone-600">—</TD>
+                            <TD className="text-center text-stone-600">—</TD>
                             <TD className="text-center"><Badge tone="slate">No data</Badge></TD>
-                            <TD className="text-slate-500"><span className="text-xs">Not checked</span></TD>
+                            <TD className="text-stone-500"><span className="text-xs">Not checked</span></TD>
                             <TD className="text-right">
                               <Button variant="primary" className="px-2.5 py-1 text-xs" onClick={() => openEdit(sender.id)}>Record</Button>
                             </TD>
@@ -375,7 +375,7 @@ export default function AuthenticationPage() {
             <CardHeader>
               <h2 className="text-base font-semibold text-white">Why this matters</h2>
             </CardHeader>
-            <CardBody className="space-y-2 text-sm text-slate-400">
+            <CardBody className="space-y-2 text-sm text-stone-400">
               <p>Gmail and Yahoo require bulk senders to authenticate with SPF and DKIM, publish a DMARC record, and support one-click unsubscribe. A sender shows <span className="text-emerald-300">Pass</span> only when all three authentication checks are green and one-click unsubscribe is enabled.</p>
               <p>A DMARC policy of <span className="text-rose-300">p=none</span> only monitors; move toward <span className="text-amber-300">quarantine</span> and then <span className="text-emerald-300">reject</span> to fully protect the domain.</p>
             </CardBody>
@@ -409,12 +409,12 @@ export default function AuthenticationPage() {
           <Field label="DMARC policy">
             <Select value={form.dmarc_policy} onChange={(v) => setForm((f) => ({ ...f, dmarc_policy: v }))} options={DMARC_POLICIES} prefix="p=" />
           </Field>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-stone-300">
             <input
               type="checkbox"
               checked={form.one_click_unsub}
               onChange={(e) => setForm((f) => ({ ...f, one_click_unsub: e.target.checked }))}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-900 text-sky-500 focus:ring-sky-500"
+              className="h-4 w-4 rounded border-stone-600 bg-stone-900 text-rose-500 focus:ring-rose-500"
             />
             One-click unsubscribe (RFC 8058) enabled
           </label>
@@ -423,7 +423,7 @@ export default function AuthenticationPage() {
               value={form.notes}
               onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
               rows={3}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
               placeholder="e.g. DKIM key rotated; DMARC aggregate reports forwarded to ops@"
             />
           </Field>
@@ -436,7 +436,7 @@ export default function AuthenticationPage() {
 function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</label>
+      <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-stone-500">{label}</label>
       {children}
     </div>
   )
@@ -447,7 +447,7 @@ function Select({ value, onChange, options, prefix = '' }: { value: string; onCh
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+      className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
     >
       {options.map((o) => (
         <option key={o} value={o}>{prefix}{o}</option>

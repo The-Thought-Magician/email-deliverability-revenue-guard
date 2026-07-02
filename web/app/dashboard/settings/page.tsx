@@ -303,13 +303,13 @@ export default function SettingsPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Settings</h1>
-          <p className="mt-1 text-sm text-slate-400">Workspace configuration, team members, and billing.</p>
+          <p className="mt-1 text-sm text-stone-400">Workspace configuration, team members, and billing.</p>
         </div>
         {workspaces.length > 1 && (
           <select
             value={workspaceId}
             onChange={(e) => setWorkspaceId(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
           >
             {workspaces.map((w) => (
               <option key={w.id} value={w.id}>
@@ -339,7 +339,7 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <h2 className="text-base font-semibold text-white">General</h2>
-              <p className="mt-0.5 text-sm text-slate-500">Name, currency, fiscal calendar, and default sender.</p>
+              <p className="mt-0.5 text-sm text-stone-500">Name, currency, fiscal calendar, and default sender.</p>
             </CardHeader>
             <CardBody className="space-y-5">
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -347,14 +347,14 @@ export default function SettingsPage() {
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                    className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                   />
                 </Field>
                 <Field label="Reporting currency">
                   <select
                     value={currency}
                     onChange={(e) => setCurrency(e.target.value)}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                    className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                   >
                     {CURRENCIES.map((c) => (
                       <option key={c} value={c}>
@@ -367,7 +367,7 @@ export default function SettingsPage() {
                   <select
                     value={fiscalMonth}
                     onChange={(e) => setFiscalMonth(Number(e.target.value))}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                    className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                   >
                     {MONTHS.map((m, i) => (
                       <option key={m} value={i + 1}>
@@ -380,7 +380,7 @@ export default function SettingsPage() {
                   <select
                     value={defaultSenderId}
                     onChange={(e) => setDefaultSenderId(e.target.value)}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+                    className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
                   >
                     <option value="">None</option>
                     {senders.map((s) => (
@@ -411,7 +411,7 @@ export default function SettingsPage() {
             <CardHeader className="flex items-center justify-between">
               <div>
                 <h2 className="text-base font-semibold text-white">Members</h2>
-                <p className="mt-0.5 text-sm text-slate-500">{members.length} member{members.length === 1 ? '' : 's'} in this workspace.</p>
+                <p className="mt-0.5 text-sm text-stone-500">{members.length} member{members.length === 1 ? '' : 's'} in this workspace.</p>
               </div>
               <Button onClick={() => setInviteOpen(true)}>Invite member</Button>
             </CardHeader>
@@ -439,14 +439,14 @@ export default function SettingsPage() {
                       const isOwner = (m.user_id || m.userId) === ownerId(ws) || (m.role || '').toLowerCase() === 'owner'
                       return (
                         <TR key={m.id}>
-                          <TD className="text-slate-200">{m.email || (m.user_id || m.userId || '').slice(0, 16) || '—'}</TD>
+                          <TD className="text-stone-200">{m.email || (m.user_id || m.userId || '').slice(0, 16) || '—'}</TD>
                           <TD>
                             <Badge tone={roleTone(isOwner ? 'owner' : m.role)}>{isOwner ? 'owner' : m.role || 'member'}</Badge>
                           </TD>
-                          <TD className="text-slate-400">{fmtDate(m.created_at || m.createdAt)}</TD>
+                          <TD className="text-stone-400">{fmtDate(m.created_at || m.createdAt)}</TD>
                           <TD className="text-right">
                             {isOwner ? (
-                              <span className="text-xs text-slate-600">—</span>
+                              <span className="text-xs text-stone-600">—</span>
                             ) : (
                               <button
                                 onClick={() => removeMember(m.id)}
@@ -470,7 +470,7 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <h2 className="text-base font-semibold text-white">Plan & Billing</h2>
-              <p className="mt-0.5 text-sm text-slate-500">
+              <p className="mt-0.5 text-sm text-stone-500">
                 {billing?.stripeEnabled ? 'Manage your subscription via Stripe.' : 'Billing is not configured for this deployment.'}
               </p>
             </CardHeader>
@@ -483,7 +483,7 @@ export default function SettingsPage() {
                 />
                 <Stat
                   label="Status"
-                  value={subStatus ? <Badge tone={subStatus === 'active' ? 'green' : 'amber'}>{subStatus}</Badge> : <span className="text-slate-500">—</span>}
+                  value={subStatus ? <Badge tone={subStatus === 'active' ? 'green' : 'amber'}>{subStatus}</Badge> : <span className="text-stone-500">—</span>}
                   hint={periodEnd ? `Renews ${fmtDate(periodEnd)}` : undefined}
                 />
               </div>
@@ -510,7 +510,7 @@ export default function SettingsPage() {
                   </Button>
                 )}
                 {!billing?.stripeEnabled && (
-                  <span className="text-xs text-slate-500">Set Stripe keys in the backend to enable checkout.</span>
+                  <span className="text-xs text-stone-500">Set Stripe keys in the backend to enable checkout.</span>
                 )}
               </div>
             </CardBody>
@@ -520,11 +520,11 @@ export default function SettingsPage() {
           <Card className="border-rose-500/30">
             <CardHeader className="border-rose-500/20">
               <h2 className="text-base font-semibold text-rose-300">Danger zone</h2>
-              <p className="mt-0.5 text-sm text-slate-500">Permanently delete this workspace and all of its data.</p>
+              <p className="mt-0.5 text-sm text-stone-500">Permanently delete this workspace and all of its data.</p>
             </CardHeader>
             <CardBody className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="text-sm text-slate-400">
-                Deleting <span className="font-semibold text-slate-200">{ws.name}</span> removes senders, imports, events, and
+              <div className="text-sm text-stone-400">
+                Deleting <span className="font-semibold text-stone-200">{ws.name}</span> removes senders, imports, events, and
                 every analysis. This cannot be undone.
               </div>
               <Button variant="danger" onClick={() => setDeleteOpen(true)}>
@@ -564,14 +564,14 @@ export default function SettingsPage() {
               value={inviteEmail}
               onChange={(e) => setInviteEmail(e.target.value)}
               placeholder="teammate@company.com"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-sky-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
             />
           </Field>
           <Field label="Role">
             <select
               value={inviteRole}
               onChange={(e) => setInviteRole(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {ROLES.map((r) => (
                 <option key={r} value={r} className="capitalize">
@@ -606,15 +606,15 @@ export default function SettingsPage() {
         }
       >
         <div className="space-y-4">
-          <p className="text-sm text-slate-400">
-            This will permanently delete <span className="font-semibold text-slate-200">{ws?.name}</span> and all associated
+          <p className="text-sm text-stone-400">
+            This will permanently delete <span className="font-semibold text-stone-200">{ws?.name}</span> and all associated
             data. To confirm, type the workspace name below.
           </p>
           <input
             value={deleteConfirm}
             onChange={(e) => setDeleteConfirm(e.target.value)}
             placeholder={ws?.name}
-            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-rose-500 focus:outline-none"
+            className="w-full rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 placeholder:text-stone-600 focus:border-rose-500 focus:outline-none"
           />
         </div>
       </Modal>
@@ -625,7 +625,7 @@ export default function SettingsPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-stone-500">{label}</span>
       {children}
     </label>
   )

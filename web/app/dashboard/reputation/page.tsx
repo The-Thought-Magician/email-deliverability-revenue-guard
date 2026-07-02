@@ -198,7 +198,7 @@ export default function ReputationPage() {
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-white">Sender Reputation</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-stone-400">
             Reputation timeline rebuilt from send events — placement, engagement, complaint, and bounce trends with annotated events.
           </p>
         </div>
@@ -207,7 +207,7 @@ export default function ReputationPage() {
             <select
               value={workspaceId}
               onChange={(e) => setWorkspaceId(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none"
+              className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none"
             >
               {workspaces.map((w) => (
                 <option key={w.id} value={w.id}>{w.name}</option>
@@ -218,7 +218,7 @@ export default function ReputationPage() {
             value={selectedSender}
             onChange={(e) => onSenderChange(e.target.value)}
             disabled={senders.length === 0}
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-sky-500 focus:outline-none disabled:opacity-50"
+            className="rounded-lg border border-stone-700 bg-stone-900 px-3 py-2 text-sm text-stone-200 focus:border-rose-500 focus:outline-none disabled:opacity-50"
           >
             {senders.length === 0 && <option value="">No senders</option>}
             {senders.map((s) => (
@@ -289,7 +289,7 @@ export default function ReputationPage() {
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-base font-semibold text-white">Reputation timeline</h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-stone-500">
                   {sorted.length} buckets for {senderName(senderById.get(selectedSender))}
                   {sorted.length > 0 && ` · ${fmtDate(pointAt(first))} – ${fmtDate(pointAt(latest))}`}
                 </p>
@@ -301,8 +301,8 @@ export default function ReputationPage() {
                     onClick={() => setMetric(m.key)}
                     className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
                       metric === m.key
-                        ? 'border-sky-500/50 bg-sky-500/15 text-sky-300'
-                        : 'border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200'
+                        ? 'border-rose-500/50 bg-rose-500/15 text-rose-300'
+                        : 'border-stone-700 bg-stone-900 text-stone-400 hover:text-stone-200'
                     }`}
                   >
                     {m.label}
@@ -319,23 +319,23 @@ export default function ReputationPage() {
             <CardHeader className="flex items-center justify-between">
               <div>
                 <h2 className="text-base font-semibold text-white">Annotations</h2>
-                <p className="text-xs text-slate-500">Notable events flagged on the timeline.</p>
+                <p className="text-xs text-stone-500">Notable events flagged on the timeline.</p>
               </div>
               <Badge tone={annotated.length > 0 ? 'sky' : 'slate'}>{annotated.length} annotated</Badge>
             </CardHeader>
             <CardBody>
               {annotated.length === 0 ? (
-                <div className="py-6 text-center text-sm text-slate-500">
+                <div className="py-6 text-center text-sm text-stone-500">
                   No annotations on this timeline. Rebuilds flag complaint spikes and bounce surges automatically.
                 </div>
               ) : (
                 <ul className="space-y-3">
                   {[...annotated].reverse().map((p, i) => (
-                    <li key={p.id || `${pointAt(p)}-${i}`} className="flex gap-3 rounded-lg border border-slate-800 bg-slate-900/40 px-4 py-3">
+                    <li key={p.id || `${pointAt(p)}-${i}`} className="flex gap-3 rounded-lg border border-stone-800 bg-stone-900/40 px-4 py-3">
                       <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-xs text-amber-300">!</div>
                       <div className="min-w-0">
-                        <div className="text-sm text-slate-200">{p.annotation}</div>
-                        <div className="mt-0.5 text-xs text-slate-500">{fmtDateTime(pointAt(p))}</div>
+                        <div className="text-sm text-stone-200">{p.annotation}</div>
+                        <div className="mt-0.5 text-xs text-stone-500">{fmtDateTime(pointAt(p))}</div>
                       </div>
                     </li>
                   ))}
@@ -383,7 +383,7 @@ export default function ReputationPage() {
                           <TD className="text-right">{fmtRate(asPct(num(p.engagement_rate, p.engagementRate)), 2)}</TD>
                           <TD className="text-right">{fmtRate(asPct(num(p.complaint_rate, p.complaintRate)), 3)}</TD>
                           <TD className="text-right">{fmtRate(asPct(num(p.bounce_rate, p.bounceRate)), 3)}</TD>
-                          <TD>{p.annotation ? <span className="text-amber-300">{p.annotation}</span> : <span className="text-slate-600">—</span>}</TD>
+                          <TD>{p.annotation ? <span className="text-amber-300">{p.annotation}</span> : <span className="text-stone-600">—</span>}</TD>
                         </TR>
                       )
                     })}
@@ -409,7 +409,7 @@ function ReputationChart({ points, metric }: { points: ReputationPoint[]; metric
     .filter((d) => typeof d.value === 'number') as { at: string; value: number; annotation: string }[]
 
   if (data.length === 0) {
-    return <div className="py-10 text-center text-sm text-slate-500">No data for this metric. Rebuild the timeline to populate it.</div>
+    return <div className="py-10 text-center text-sm text-stone-500">No data for this metric. Rebuild the timeline to populate it.</div>
   }
 
   const W = 760
